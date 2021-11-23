@@ -41,12 +41,14 @@ class ApplicationController < ActionController::Base
 
       idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
       # Returns OneLogin::RubySaml::Settings pre-populated with IdP metadata
-      settings = idp_metadata_parser.parse_remote("https://login.stanford.edu/metadata.xml")
+      settings = idp_metadata_parser.parse_remote("https://idp.stanford.edu/metadata.xml")
       
       # You provide to IDP
       settings.assertion_consumer_service_url = "https://blooming-inlet-00991.herokuapp.com/saml_callback"
       settings.sp_entity_id                   = "https://blooming-inlet-00991.herokuapp.com"
     
+      settings.idp_sso_target_url             = "https://login.stanford.edu/idp/profile/SAML2/POST/SSO"
+
       settings.certificate = Rails.application.credentials.sp_cert
       settings.private_key = Rails.application.credentials.sp_key
 
