@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
       )
     
       if response.is_valid?
-        @user = User.create_or_find_by!(email: response.nameid)
-        pp(response.attributes)
+        pp(response.attributes["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"])
+        @user = User.create_or_find_by!(email: response.attributes["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"])
         sign_in(@user)
         redirect_to(:logged_in)
       else
