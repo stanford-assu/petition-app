@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
       settings = OneLogin::RubySaml::Settings.new
       
       # You provide to IDP
-      settings.assertion_consumer_service_url = "http://#{request.host_with_port}/saml_callback"
+      settings.assertion_consumer_service_url = "https://#{request.host_with_port}/saml_callback"
       settings.sp_entity_id                   = "my-single-tenant"
       
       # IDP provides to you
