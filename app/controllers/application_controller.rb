@@ -28,20 +28,30 @@ class ApplicationController < ActionController::Base
         raise response.errors.inspect
       end
     end
+
+    def metadata
+      settings = saml_settings
+      meta = OneLogin::RubySaml::Metadata.new
+      render :xml => meta.generate(settings), :content_type => "application/samlmetadata+xml"
+    end
   
     private
   
     def saml_settings
-      settings = OneLogin::RubySaml::Settings.new
+
+      idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
+      # Returns OneLogin::RubySaml::Settings pre-populated with IdP metadata
+      settings = idp_metadata_parser.parse_remote("https://login.stanford.edu/metadata.xml")
       
       # You provide to IDP
-      settings.assertion_consumer_service_url = "https://#{request.host_with_port}/saml_callback"
-      settings.sp_entity_id                   = "my-single-tenant"
-      
-      # IDP provides to you
-      settings.idp_sso_target_url             = "https://idp.ossoapp.com/saml-login"
-      settings.idp_cert                       = Rails.application.credentials.idp_cert
-      
+      settings.assertion_consumer_service_url = "https://blooming-inlet-00991.herokuapp.com/saml_callback"
+      settings.sp_entity_id                   = "https://blooming-inlet-00991.herokuapp.com"
+    
+      settings.certificate = Rails.application.credentials.sp_cert
+      settings.private_key = Rails.application.credentials.sp_key
+
+      settings.security[:want_assertions_encrypted] = true
+
       settings
     end
   end
