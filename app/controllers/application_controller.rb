@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     
       if response.is_valid?
         @user = User.create_or_find_by!(email: response.nameid)
-        puts response.nameid
+        pp(response.attributes)
         sign_in(@user)
         redirect_to(:logged_in)
       else
