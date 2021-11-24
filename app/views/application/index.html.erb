@@ -1,6 +1,6 @@
 <div class="container">
 <div class="main-content">
-  <h1>Welcome!</h1>
+  <h1>Welcome to the new ASSU petitioning interface!</h1>
   <% flash.each do |name, msg| %>
     <% if msg.is_a?(String) %>
       <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
@@ -8,6 +8,12 @@
       </div>
     <% end %>
   <% end %>
-  <%= button_to 'Sign in with SAML SSO', action: :saml_login %>
+
+<% if user_signed_in? %> 
+    Logged in as <%= current_user.eppn %><br>
+    Hello, <%= current_user.name %>
+<% else %>
+    <%= button_to "Login", action: :saml_login %>
+<% end %>
 </div>  
 </div> 

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+Found <%= @users.length %> users.
+
+<table>
+  <thead>
+    <tr>
+      <th>EPPN</th>
+      <th>Name</th>
+      <th>Membership</th>
+      <th>Last Login</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.eppn %></td>
+        <td><%= user.name %></td>
+        <td><%= user.member_type %></td>
+        <td><%= user.last_login %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

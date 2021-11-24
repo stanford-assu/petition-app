@@ -2,10 +2,10 @@ class ApplicationController < ActionController::Base
     before_action :authenticate_user!, only: :logged_in
     skip_before_action :verify_authenticity_token, only: :saml_callback
     
+    SAML_EPPN = "urn:oid:1.3.6.1.4.1.5923.1.1.1.6"
+    SAML_NAME = "urn:oid:2.16.840.1.113730.3.1.241"
+
     def index
-    end
-  
-    def logged_in
     end
   
     def saml_login
@@ -20,10 +20,10 @@ class ApplicationController < ActionController::Base
       )
     
       if response.is_valid?
-        pp(response.attributes["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"])
-        @user = User.create_or_find_by!(email: response.attributes["urn:oid:1.3.6.1.4.1.5923.1.1.1.6"])
+        @user = User.create_or_find_by!(eppn: response.attributes[SAML_EPPN])
+        @user.update(name: response.attributes[SAML_NAME], last_login: DateTime.now)
         sign_in(@user)
-        redirect_to(:logged_in)
+        redirect_to action: 'index'
       else
         raise response.errors.inspect
       end
@@ -39,12 +39,7 @@ class ApplicationController < ActionController::Base
   
     def saml_settings
       settings = OneLogin::RubySaml::Settings.new
-
-      #idp_metadata_parser = OneLogin::RubySaml::IdpMetadataParser.new
-      # Returns OneLogin::RubySaml::Settings pre-populated with IdP metadata
-      #settings = idp_metadata_parser.parse_remote("https://idp.stanford.edu/metadata.xml")
       
-      # You provide to IDP
       settings.assertion_consumer_service_url = "https://#{request.host_with_port}/saml_callback"
       settings.sp_entity_id                   = "https://blooming-inlet-00991.herokuapp.com"
     
