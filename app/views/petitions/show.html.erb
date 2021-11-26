@@ -1,0 +1,17 @@
+<p>
+  <strong>Slug:</strong>
+  <%= @petition.slug %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @petition.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @petition.content %>
+</p>
+
+<%= link_to 'Edit', edit_petition_path(@petition) %> |
+<%= link_to 'Back', petitions_path %>
