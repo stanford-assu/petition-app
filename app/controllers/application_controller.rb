@@ -20,9 +20,17 @@ class ApplicationController < ActionController::Base
       )
     
       if response.is_valid?
-        @user = User.create_or_find_by!(eppn: response.attributes[SAML_EPPN])
-        @user.update(name: response.attributes[SAML_NAME], last_login: DateTime.now)
-        sign_in(@user)
+        #Check for @stanford.edu, then split
+        eppn, domain = response.attributes[SAML_EPPN].split('@',2)
+        pp(eppn)
+        pp(domain)
+        if not domain == "stanford.edu"
+          fail "Not a Stanford EPPN"
+        else
+          @user = User.create_or_find_by!(id: eppn)
+          @user.update(name: response.attributes[SAML_NAME], last_login: DateTime.now)
+          sign_in(@user)
+        end
         redirect_to action: 'index'
       else
         raise response.errors.inspect
