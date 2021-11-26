@@ -21,8 +21,7 @@ class PetitionsController < ApplicationController
 
   # POST /petitions or /petitions.json
   def create
-    @petition = Petition.new(petition_params)
-
+    @petition = current_user.petitions.new(petition_params)
     respond_to do |format|
       if @petition.save
         format.html { redirect_to @petition, notice: "Petition was successfully created." }
