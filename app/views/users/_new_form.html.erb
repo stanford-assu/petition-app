@@ -12,18 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :id %>
+    <%= form.label(:id,'EPPN') %> 
+    <%= form.text_field :id %> @stanford.edu
   </div>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :Affiliation %>
-    <%= form.text_field :member_type %>
+    <%= form.label(:member_type,'Affilliation') %>
+    <%= form.select(:member_type, User.member_types.keys) %>
   </div>
 
   <div class="actions">
