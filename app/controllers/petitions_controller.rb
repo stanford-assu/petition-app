@@ -10,6 +10,11 @@ class PetitionsController < ApplicationController
   def show
   end
 
+  def by_slug
+    @petition = Petition.find_by!(slug: params[:slug])
+    render "show"
+  end
+
   # GET /petitions/new
   def new
     @petition = Petition.new
