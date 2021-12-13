@@ -4,19 +4,20 @@
 </p>
 
 <p>
-  <strong>Sponsor:</strong>
-  <%= @petition.user.id %>
-</p>
-
-<p>
   <strong>Title:</strong>
   <%= @petition.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
-  <%= @petition.content %>
+  <strong>Sponsor:</strong>
+  <%= @petition.user.id %>
 </p>
 
+<strong>Content:</strong>
+<div class="content">
+  <%= @petition.content %>
+</div>
+
 <%= link_to 'Edit', edit_petition_path(@petition) %> |
-<%= link_to 'Back', petitions_path %>
+<%= link_to 'Back', petitions_path %> |
+<%= link_to 'Public View', "/"+@petition.slug  %>

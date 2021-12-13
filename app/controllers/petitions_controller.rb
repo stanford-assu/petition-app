@@ -12,7 +12,7 @@ class PetitionsController < ApplicationController
 
   def by_slug
     @petition = Petition.find_by!(slug: params[:slug])
-    render "show"
+    render "show_public"
   end
 
   # GET /petitions/new
