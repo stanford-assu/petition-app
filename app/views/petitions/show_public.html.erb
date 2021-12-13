@@ -1,10 +1,11 @@
-<p>
+<h2>
   <%= @petition.title %>
-</p>
+</h2>
 
 <p>
   <strong>Sponsor:</strong>
   <%= @petition.user.id %>
+  (<%= @petition.user.name %>)
 </p>
 
 <div class="content">
