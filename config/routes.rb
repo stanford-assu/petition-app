@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  resources :petitions
+  resources :petitions do
+    member do
+      post 'sign'
+      delete 'unsign'
+    end
+  end
+
   resources :users
+
   devise_for :users
 
   root to: "application#index"

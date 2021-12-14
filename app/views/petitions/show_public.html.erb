@@ -11,3 +11,23 @@
 <div class="content">
   <%= @petition.content %>
 </div>
+
+<div>
+  <% if @petition.signees.exists?(current_user.id) %>
+    <%= link_to 'Unsign Petition', unsign_petition_path(@petition), method: :delete %>
+  <% else %>
+    <%= link_to 'Sign Petition', sign_petition_path(@petition), method: :post %>
+  <% end %>
+</div>
+
+<br>
+
+<div>
+  <strong>Signees:</strong>
+  <div>
+      <% @petition.signees.each do |signee| %>
+        <br><%= signee.id %>
+        (<%= signee.name %>)
+      <% end %>
+  </div>
+</div>

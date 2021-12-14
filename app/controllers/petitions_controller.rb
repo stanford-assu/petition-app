@@ -1,5 +1,6 @@
 class PetitionsController < ApplicationController
-  before_action :set_petition, only: %i[ show edit update destroy ]
+  before_action :set_petition, only: %i[ show edit update destroy sign unsign]
+  before_action :set_petition_by_slug, only: %i[ by_slug ]
 
   # GET /petitions or /petitions.json
   def index
@@ -8,10 +9,10 @@ class PetitionsController < ApplicationController
 
   # GET /petitions/1 or /petitions/1.json
   def show
+    pp @petition.signees.exists?(current_user.id)
   end
 
   def by_slug
-    @petition = Petition.find_by!(slug: params[:slug])
     render "show_public"
   end
 
@@ -22,6 +23,22 @@ class PetitionsController < ApplicationController
 
   # GET /petitions/1/edit
   def edit
+  end
+
+  def sign
+    if !@petition.signees.exists?(current_user.id)
+      current_user.signatures << @petition
+      flash[:notice] = 'Petition signed!'
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unsign
+    if @petition.signees.exists?(current_user.id)
+      current_user.signatures.delete(@petition)
+      flash[:notice] = 'Petition signature removed!'
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   # POST /petitions or /petitions.json
@@ -64,6 +81,10 @@ class PetitionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_petition
       @petition = Petition.find(params[:id])
+    end
+    
+    def set_petition_by_slug
+      @petition = Petition.find_by!(slug: params[:slug])
     end
 
     # Only allow a list of trusted parameters through.

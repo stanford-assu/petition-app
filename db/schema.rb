@@ -62,11 +62,11 @@ ActiveRecord::Schema.define(version: 2021_12_13_084554) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "petitions_users", id: false, force: :cascade do |t|
+  create_table "signature_join", id: false, force: :cascade do |t|
     t.bigint "petition_id"
-    t.bigint "user_id"
-    t.index ["petition_id"], name: "index_petitions_users_on_petition_id"
-    t.index ["user_id"], name: "index_petitions_users_on_user_id"
+    t.string "user_id"
+    t.index ["petition_id"], name: "index_signature_join_on_petition_id"
+    t.index ["user_id"], name: "index_signature_join_on_user_id"
   end
 
   create_table "users", id: :string, force: :cascade do |t|

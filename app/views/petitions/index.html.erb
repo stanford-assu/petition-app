@@ -18,7 +18,7 @@
         <td><%= petition.title %></td>
         <td><%= link_to 'Show', petition %></td>
         <td><%= link_to 'Edit', edit_petition_path(petition) %></td>
-        <td><%= link_to 'Destroy', petition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', petition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
