@@ -1,0 +1,21 @@
+<h2>Leaderboard</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Sponsor</th>
+      <th>Signees</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @petitions.each do |petition| %>
+      <tr>
+        <td><%= link_to petition.title, "/"+petition.slug %></td>
+        <td><%= petition.user.id %></td>
+        <td><%= petition.signees.length %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

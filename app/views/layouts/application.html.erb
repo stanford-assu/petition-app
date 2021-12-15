@@ -14,8 +14,16 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= link_to "Home", root_path %>
-  <%= link_to "Users", users_path %>
-  <%= link_to "Petitions", petitions_path %>
+
+  <% if current_user %> 
+    <%= link_to "My Petitions", petitions_path %>
+  <% end %>
+
+  <% if current_user && current_user.admin %> 
+    <%= link_to "Users", users_path %>
+  <% end %>
+
+  <%= link_to "Leaderboard", leaderboard_petitions_path %>
 
   <div class="login" >
     <% if user_signed_in? %> 

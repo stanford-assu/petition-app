@@ -1,16 +1,24 @@
 class PetitionsController < ApplicationController
   before_action :set_petition, only: %i[ show edit update destroy sign unsign]
   before_action :set_petition_by_slug, only: %i[ by_slug ]
-  before_action :require_admin, :except => [:by_slug]
+  before_action :require_user, :except => [ :by_slug, :leaderboard ]
+  before_action :check_petition_access, only: [ :show, :edit, :update, :destroy ]
 
   # GET /petitions or /petitions.json
   def index
-    @petitions = Petition.all
+    if current_user.admin
+      @petitions = Petition.all
+    else
+      @petitions = Petition.where(:user_id => current_user.id)
+    end
+  end
+
+  def leaderboard
+    @petitions = Petition.all.sort_by{ |a| -a.signees.length } # Sort by decending signature count
   end
 
   # GET /petitions/1 or /petitions/1.json
   def show
-    pp @petition.signees.exists?(current_user.id)
   end
 
   def by_slug
@@ -91,5 +99,11 @@ class PetitionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def petition_params
       params.require(:petition).permit(:slug, :title, :content)
+    end
+
+    def check_petition_access
+      unless (current_user.admin || @petition.user_id == current_user.id)
+        redirect_to action: 'index', controller: 'application'
+      end
     end
 end

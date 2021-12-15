@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :petitions do
+    
     member do
       post 'sign'
       delete 'unsign'
+    end
+
+    collection do
+      get 'leaderboard'
     end
   end
 
