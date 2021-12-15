@@ -16,6 +16,7 @@
   <%= link_to "Home", root_path %>
 
   <% if current_user %> 
+    <%= link_to "Voter Profile", user_path(current_user) %>
     <%= link_to "My Petitions", petitions_path %>
   <% end %>
 

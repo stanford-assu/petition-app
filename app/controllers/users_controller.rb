@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-  before_action :require_admin
+  before_action :require_admin, :except => [ :show ]
   
   # GET /users or /users.json
   def index
@@ -9,6 +9,9 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    unless (current_user.admin || @user.id == current_user.id)
+      redirect_to action: 'index', controller: 'application'
+    end
   end
 
   # GET /users/new

@@ -13,6 +13,8 @@
   <%= @user.member_type %>
 </p>
 
+<% if current_user.admin %> 
+
 <p>
   <strong>Admin:</strong>
   <%= @user.admin %>
@@ -21,7 +23,9 @@
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
-<br><br>
+<% end %>
+
+<br>
 
 <div>
   <strong> <%= @user.signatures.length %> Signatures: </strong>
