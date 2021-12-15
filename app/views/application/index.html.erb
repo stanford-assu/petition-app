@@ -10,11 +10,5 @@
 
   <h1>Welcome to the new ASSU petitioning interface!</h1>
 
-<% if user_signed_in? %> 
-    Logged in as <%= current_user.id %><br>
-    Hello, <%= current_user.name %>
-<% else %>
-    <%= button_to "Login", action: :saml_login %>
-<% end %>
 </div>  
 </div> 

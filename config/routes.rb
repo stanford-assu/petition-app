@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'saml_login', to: "application#saml_login"
   post 'saml_callback', to: "application#saml_callback"
   get 'saml_metadata.xml', to: "application#metadata"
+  post 'saml_logout', to:"application#saml_logout"
   
   get '/:slug', to: "petitions#by_slug"
 end

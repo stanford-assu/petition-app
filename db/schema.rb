@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_12_13_084554) do
   create_table "users", id: :string, force: :cascade do |t|
     t.string "name"
     t.integer "member_type"
+    t.boolean "admin", default: false
     t.datetime "last_login"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

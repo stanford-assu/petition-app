@@ -3,6 +3,7 @@ class AddUsers < ActiveRecord::Migration[6.1]
     create_table :users, id: :string do |t|
       t.string :name
       t.integer :member_type
+      t.boolean :admin, :default => false
       t.timestamp :last_login
       t.timestamps null: false
     end

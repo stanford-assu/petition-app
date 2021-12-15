@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-
+  before_action :require_admin
+  
   # GET /users or /users.json
   def index
     @users = User.all
@@ -65,6 +66,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :id, :member_type)
+      params.require(:user).permit(:name, :id, :member_type, :admin)
     end
 end

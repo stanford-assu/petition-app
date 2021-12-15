@@ -34,7 +34,7 @@
 <br>
 
 <div>
-  <strong>Signees:</strong>
+  <strong> <%= @petition.signees.length %> Signees: </strong>
   <div>
       <% @petition.signees.each do |signee| %>
         <br><%= signee.id %>

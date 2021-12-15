@@ -26,6 +26,10 @@
     <%= form.select(:member_type, User.member_types.keys) %>
   </div>
 
+  <div class="field">
+    <%= form.label(:admin,'Admin') %>
+    <%= form.check_box(:admin) %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

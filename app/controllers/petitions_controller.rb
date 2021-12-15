@@ -1,6 +1,7 @@
 class PetitionsController < ApplicationController
   before_action :set_petition, only: %i[ show edit update destroy sign unsign]
   before_action :set_petition_by_slug, only: %i[ by_slug ]
+  before_action :require_admin, :except => [:by_slug]
 
   # GET /petitions or /petitions.json
   def index

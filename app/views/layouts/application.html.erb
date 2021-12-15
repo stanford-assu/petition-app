@@ -16,6 +16,15 @@
   <%= link_to "Home", root_path %>
   <%= link_to "Users", users_path %>
   <%= link_to "Petitions", petitions_path %>
-    <%= yield %>
+
+  <div class="login" >
+    <% if user_signed_in? %> 
+      Logged in as <%= current_user.id %> <%= button_to "Logout", action: :saml_logout, :controller => "application"%>
+    <% else %>
+      <%= button_to "Login", action: :saml_login, :controller => "application" %>
+    <% end %>
+  </div>
+
+  <%= yield %>
   </body>
 </html>

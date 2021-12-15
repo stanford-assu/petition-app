@@ -13,5 +13,21 @@
   <%= @user.member_type %>
 </p>
 
+<p>
+  <strong>Admin:</strong>
+  <%= @user.admin %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<br><br>
+
+<div>
+  <strong> <%= @user.signatures.length %> Signatures: </strong>
+  <div>
+      <% @user.signatures.each do |signature| %>
+        <br><%= link_to signature.title, "/"+signature.slug %>
+      <% end %>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<h1>Petitions</h1>
+<h2>Petitions</h2>
 
 <table>
   <thead>
@@ -6,7 +6,8 @@
       <th>Slug</th>
       <th>Sponsor</th>
       <th>Title</th>
-      <th colspan="3"></th>
+      <th>Signees</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -16,7 +17,9 @@
         <td><%= petition.slug %></td>
         <td><%= petition.user.id %></td>
         <td><%= petition.title %></td>
+        <td><%= petition.signees.length %></td>
         <td><%= link_to 'Show', petition %></td>
+        <td><%= link_to 'Public View', "/"+petition.slug %></td>
         <td><%= link_to 'Edit', edit_petition_path(petition) %></td>
         <td><%= link_to 'Delete', petition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
