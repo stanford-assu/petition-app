@@ -29,3 +29,11 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+.trix-content figure {
+  width: intrinsic;
+}
+
+.trix-content img {
+    width: 25%;
+}
