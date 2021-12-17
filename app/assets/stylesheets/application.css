@@ -82,3 +82,5 @@ th,td {
   padding: 2px 5px;
   text-align: left;
 }
+
+@import "actiontext.css";
