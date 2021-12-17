@@ -33,4 +33,12 @@
       max-width: 100% !important;
     }
   }
+
+  figure {
+    width: intrinsic;
+  }
+
+  img {
+      width: 25%;
+  }
 }
