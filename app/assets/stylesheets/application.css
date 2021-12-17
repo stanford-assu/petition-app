@@ -14,6 +14,35 @@
  *= require_self
  */
 
+  body {
+  font-family: 'Rubik';
+  }
+
+  h1 {
+    font-family: 'Brandon Grotesque';
+    font-weight: bold;
+  }
+
  .login {
     float: right;
+ }
+
+ .banner_img {
+   max-width: 25%;
+   height: auto;
+ }
+
+ #top_bar {
+  background-color: #2889e1;
+ }
+
+ .menu_link {
+   background-color: #831416;
+   margin: 3px;
+   padding: 3px;
+   padding-left: 4px;
+   padding-right: 4px;
+   color: white;
+   text-decoration-line: none;
+   font-family: 'Rubik';
  }
