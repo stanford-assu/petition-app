@@ -2,17 +2,15 @@
   <%= @petition.title %>
 </h2>
 
-<p>
-  <strong>Sponsor:</strong>
-  <%= @petition.user.id %>
-  (<%= @petition.user.name %>)
-</p>
+<div class="field"> 
+  <strong>Sponsor:</strong> <%= @petition.user.id %> (<%= @petition.user.name %>)
+</div>
 
 <div class="content">
   <%= @petition.content %>
 </div>
 
-<div>
+<div class="link-list">
   <% if user_signed_in? %> 
     <% if @petition.signees.exists?(current_user.id) %>
       <%= link_to 'Unsign Petition', unsign_petition_path(@petition), method: :delete %>
@@ -22,15 +20,11 @@
   <% end %>
 </div>
 
-<br>
-
-<div>
+<div class="signature-list">
   <strong> <%= @petition.signees.length %> Signees: </strong>
-  
-  <div>
-      <% @petition.signees.each do |signee| %>
-        <br><%= signee.id %>
-        (<%= signee.name %>)
-      <% end %>
-  </div>
+  <% @petition.signees.each do |signee| %>
+    <div class="signature">
+      <%= signee.id %> (<%= signee.name %>)
+    </div>
+  <% end %>
 </div>

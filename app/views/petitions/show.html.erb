@@ -1,28 +1,24 @@
-<p>
-  <strong>Slug:</strong>
-  <%= @petition.slug %>
-</p>
+<div class="field"> 
+  <strong>Slug: </strong><%= @petition.slug %>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @petition.title %>
-</p>
+<div class="field"> 
+  <strong>Title: </strong><%= @petition.title %>
+</div>
 
-<p>
-  <strong>Sponsor:</strong>
-  <%= @petition.user.id %>
-  (<%= @petition.user.name %>)
-</p>
+<div class="field"> 
+  <strong>Sponsor: </strong><%= @petition.user.id %> (<%= @petition.user.name %>)
+</div>
 
 <strong>Content:</strong>
 <div class="content">
   <%= @petition.content %>
 </div>
 
-<div>
+<div class="link-list">
   <%= link_to 'Edit', edit_petition_path(@petition) %> |
   <%= link_to 'Back', petitions_path %> |
-  <%= link_to 'Public View', "/"+@petition.slug %> |
+  <%= link_to 'Public View', "/" + @petition.slug %> |
   <%= link_to 'Delete', @petition, method: :delete, data: { confirm: 'Are you sure?' } %> |
   <% if @petition.signees.exists?(current_user.id) %>
     <%= link_to 'Unsign Petition', unsign_petition_path(@petition), method: :delete %>
@@ -31,14 +27,12 @@
   <% end %>
 </div>
 
-<br>
 
-<div>
+<div class="signature-list">
   <strong> <%= @petition.signees.length %> Signees: </strong>
-  <div>
-      <% @petition.signees.each do |signee| %>
-        <br><%= signee.id %>
-        (<%= signee.name %>)
-      <% end %>
-  </div>
+    <% @petition.signees.each do |signee| %>
+      <div class="signature">
+        <%= signee.id %> (<%= signee.name %>)
+      </div>
+    <% end %>
 </div>

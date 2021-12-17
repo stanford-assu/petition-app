@@ -14,35 +14,68 @@
  *= require_self
  */
 
-  body {
+body {
   font-family: 'Rubik';
-  }
+  margin: 0;
+}
 
-  h1 {
-    font-family: 'Brandon Grotesque';
-    font-weight: bold;
-  }
+h1 {
+  font-family: 'Brandon Grotesque';
+  font-weight: bold;
+}
 
- .login {
-    float: right;
- }
+h2 {
+  font-family: 'Rubik';
+  font-weight: bold;
+  margin: 5px 0px;
+}
 
- .banner_img {
-   max-width: 25%;
-   height: auto;
- }
+.login {
+  float: right;
+}
 
- #top_bar {
-  background-color: #2889e1;
- }
+.page_content {
+  padding: 20px;
+}
 
- .menu_link {
-   background-color: #831416;
-   margin: 3px;
-   padding: 3px;
-   padding-left: 4px;
-   padding-right: 4px;
-   color: white;
-   text-decoration-line: none;
-   font-family: 'Rubik';
- }
+.banner_img {
+  max-width: 25%;
+  height: auto;
+}
+
+#top_bar {
+background-color: #2889e1;
+padding: 10px;
+}
+
+.menu_link {
+  background-color: #831416;
+  margin: 3px;
+  padding: 3px;
+  padding-right: 4px;
+  color: white;
+  text-decoration-line: none;
+  font-family: 'Rubik';
+}
+
+.field {
+  margin: 3px 0px;
+}
+
+.link-list {
+  margin: 2px 0px;
+  margin-bottom: 20px;
+}
+
+.signature-list {
+ margin: 2px 0px;
+}
+
+.signature {
+  margin-top: 2px 0px;
+}
+
+th,td {
+  padding: 2px 5px;
+  text-align: left;
+}

@@ -1,14 +1,16 @@
-<div class="container">
-<div class="main-content">
-  <% flash.each do |name, msg| %>
-    <% if msg.is_a?(String) %>
-      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-        <%=raw content_tag :div, msg, id:"flash_#{name}" %>
-      </div>
-    <% end %>
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <%=raw content_tag :div, msg, id:"flash_#{name}" %>
+    </div>
   <% end %>
+<% end %>
 
-  <h1>Welcome to the new ASSU petitioning interface!</h1>
+<h1>Welcome to the new ASSU Petitioning Interface!</h1>
 
-</div>  
-</div> 
+<h2>Things that still need to be done:</h2>
+<ul>
+  <li>Bulk import of grad/undergrad status</li>
+  <li>Do we want to restict who can sign what type of petition?</li>
+  <li>Should there be different types of petitions?</li>
+</ul>

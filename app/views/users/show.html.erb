@@ -1,37 +1,22 @@
-<p>
-  <strong>Email:</strong>
-  <%= @user.id %>
-</p>
+<div class="field"> <strong>Email: </strong><%= @user.id %> </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="field"> <strong>Name: </strong><%= @user.name %> </div>
 
-<p>
-  <strong>Affiliation:</strong>
-  <%= @user.member_type %>
-</p>
+<div class="field"> <strong>Affiliation: </strong><%= @user.member_type %> </div>
 
 <% if current_user.admin %> 
-
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-
+  <div class="field"> <strong>Admin: </strong> <%= @user.admin %> </div>
+  <div class="link-list">
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Back', users_path %>
+  </div>
 <% end %>
 
-<br>
-
-<div>
+<div class="signature-list">
   <strong> <%= @user.signatures.length %> Signatures: </strong>
-  <div>
-      <% @user.signatures.each do |signature| %>
-        <br><%= link_to signature.title, "/"+signature.slug %>
-      <% end %>
-  </div>
+  <% @user.signatures.each do |signature| %>
+    <div class="signature">
+    <%= link_to signature.title, "/" + signature.slug %>
+    </div>
+  <% end %>
 </div>
