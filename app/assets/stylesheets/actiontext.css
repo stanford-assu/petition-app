@@ -3,6 +3,7 @@
  * the trix-editor content (whether displayed or under editing). Feel free to incorporate this
  * inclusion directly in any other asset bundle and remove this file.
  *
+ *= require trix/dist/trix
 */
 
 /*
@@ -10,6 +11,9 @@
  * <action-text-attachment> element we wrap around attachments. Otherwise,
  * images in galleries will be squished by the max-width: 33%; rule.
 */
+
+@import "trix/dist/trix";
+
 .trix-content .attachment-gallery > action-text-attachment,
 .trix-content .attachment-gallery > .attachment {
   flex: 1 0 33%;
@@ -27,12 +31,4 @@
 .trix-content action-text-attachment .attachment {
   padding: 0 !important;
   max-width: 100% !important;
-}
-
-.trix-content figure {
-  width: intrinsic;
-}
-
-.trix-content img {
-    width: 25%;
 }
