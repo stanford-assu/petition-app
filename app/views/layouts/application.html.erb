@@ -16,28 +16,30 @@
   <!-- <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p> -->
 
-  <div id="top_bar">
+  <div class="top_bar">
 
     <!-- <%= image_tag("ASSU-Logo-Primary-RGB.png", :alt => "ASSU Logo Banner", :class => "banner_img") %> -->
 
-    <%= link_to "Home", root_path, :class => "menu_link" %>
+    <%= link_to "Home", root_path %>
 
     <% if current_user %> 
-      <%= link_to "Voter Profile", user_path(current_user), :class => "menu_link" %>
-      <%= link_to "My Petitions", petitions_path, :class => "menu_link" %>
+      <%= link_to "Voter Profile", user_path(current_user) %>
+      <%= link_to "My Petitions", petitions_path %>
     <% end %>
 
     <% if current_user && current_user.admin %> 
-      <%= link_to "Users", users_path, :class => "menu_link" %>
+      <%= link_to "Users", users_path %>
     <% end %>
 
-    <%= link_to "Leaderboard", leaderboard_petitions_path, :class => "menu_link" %>
+    <%= link_to "Leaderboard", leaderboard_petitions_path %>
 
     <div class="login" >
       <% if user_signed_in? %> 
-        Logged in as <%= current_user.id %> <%= button_to "Logout", action: :saml_logout, :controller => "application"%>
+        Logged in as <%= current_user.id %>
+        <%= link_to "Logout", saml_logout_path, method: :post %>
       <% else %>
-        <%= button_to "Login", action: :saml_login, :controller => "application" %>
+        <!-- <%= button_to "Login", action: :saml_login, :controller => "application" %> -->
+        <%= link_to "Login", saml_login_path, method: :post %>
       <% end %>
     </div>
 

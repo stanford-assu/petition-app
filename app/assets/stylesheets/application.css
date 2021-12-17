@@ -22,6 +22,7 @@ body {
 h1 {
   font-family: 'Brandon Grotesque';
   font-weight: bold;
+  margin: 5px 0px 10px 0px;
 }
 
 h2 {
@@ -30,12 +31,10 @@ h2 {
   margin: 5px 0px;
 }
 
-.login {
-  float: right;
-}
+
 
 .page_content {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .banner_img {
@@ -43,16 +42,24 @@ h2 {
   height: auto;
 }
 
-#top_bar {
+.top_bar {
 background-color: #2889e1;
-padding: 10px;
+display: flex;
+flex-wrap: wrap;
 }
 
-.menu_link {
+.top_bar * {
+  margin: 5px 3px;
+  padding: 3px 6px;
+}
+
+.login {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.top_bar a:link, .top_bar a:visited {
   background-color: #831416;
-  margin: 3px;
-  padding: 3px;
-  padding-right: 4px;
   color: white;
   text-decoration-line: none;
   font-family: 'Rubik';
