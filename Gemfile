@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'ruby-saml', '~> 1.13.0'
 gem 'devise'
 
-gem 'quilljs-rails', :git => 'git://github.com/abhinavmathur/quilljs-rails.git'
+gem "google-cloud-storage", "~> 1.8", require: false
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
