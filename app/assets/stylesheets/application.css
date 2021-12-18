@@ -14,9 +14,21 @@
  *= require_self
  */
 
+html, body {
+  height: 100%;
+}
+
+footer {
+  flex-shrink: 0;
+  width: 100%;
+  text-align: center;
+}
+
 body {
   font-family: 'Rubik';
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -31,10 +43,12 @@ h1,h2,h3,h4,h5,h6 {
 
 .page_content {
   padding: 10px 20px;
+  flex: 1 0 auto;
 }
 
 .banner_img {
-  max-width: 25%;
+  width: 500px;
+  max-width: 50%;
   height: auto;
 }
 

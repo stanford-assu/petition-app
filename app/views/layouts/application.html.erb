@@ -18,8 +18,6 @@
 
   <div class="top_bar">
 
-    <!-- <%= image_tag("ASSU-Logo-Primary-RGB.png", :alt => "ASSU Logo Banner", :class => "banner_img") %> -->
-
     <%= link_to "Home", root_path %>
 
     <% if current_user %> 
@@ -48,6 +46,10 @@
   <div class = "page_content">
     <%= yield %>
   </div>
+
+  <footer>
+    <%= image_tag("ASSU-Logo-Primary-RGB.png", :alt => "ASSU Logo Banner", :class => "banner_img") %>
+  </footer>
 
   </body>
 </html>
