@@ -1,5 +1,10 @@
 # README
 
+### Services
+The app itself runs on a Heroku app dyno
+The database is a Heroku Postgres instance
+Image and File uploads are stored in a GCP cloud storage bucket
+
 ### Local Development
 To develop on localhost, you need to generate a certifcate/keys:
 `openssl req -x509 -sha256 -nodes -newkey rsa:2048 -days 365 -keyout config/local-certs/localhost.key -out config/local-certs/localhost.crt -subj "/CN=localhost"`

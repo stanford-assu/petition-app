@@ -18,7 +18,7 @@ local:
 google:
   service: GCS
   project: petition-app-335507
-  credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
+  credentials: <%= Rails.application.credentials.gcs_todo_pic.to_json %>
   bucket: petition-app-prod
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
