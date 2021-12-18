@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   end
 
   def saml_login
-    request = OneLogin::RubySaml::Authrequest.new
-    redirect_to(request.create(saml_settings))
+    saml_request = OneLogin::RubySaml::Authrequest.new
+    redirect_to(saml_request.create(saml_settings, :RelayState => request.referrer))
   end
 
   def saml_callback
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     )
   
     if response.is_valid?
-      #Check for @stanford.edu, then split
+      #Check for @stanford.edu
       eppn, domain = response.attributes[SAML_EPPN].split('@',2)
       if not domain == "stanford.edu"
         fail "Not a Stanford EPPN"
@@ -29,7 +29,13 @@ class ApplicationController < ActionController::Base
         @user.update(name: response.attributes[SAML_NAME], last_login: DateTime.now)
         sign_in(@user)
       end
-      redirect_to action: 'index'
+
+      if params[:RelayState]
+        redirect_to params[:RelayState]
+      else
+        redirect_to action: 'index'
+      end
+
     else
       raise response.errors.inspect
     end

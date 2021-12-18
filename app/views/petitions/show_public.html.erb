@@ -17,6 +17,8 @@
     <% else %>
       <%= link_to 'Sign Petition', sign_petition_path(@petition), method: :post %>
     <% end %>
+  <% else %>
+    <%= link_to 'Login to Sign Petition', saml_login_path, method: :post %>
   <% end %>
 </div>
 
