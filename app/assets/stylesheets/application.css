@@ -14,6 +14,10 @@
  *= require_self
  */
 
+* {
+  margin: 0;
+}
+
 html, body {
   height: 100%;
 }
@@ -30,14 +34,10 @@ body {
   /* flex-wrap: wrap; This fixes some stuff on mobile, but breaks desktop.*/
 }
 
-.title {
-  font-family: 'Brandon Grotesque';
-  font-weight: bold;
-  margin: 5px 0px 10px 0px;
-}
+
 
 h1,h2,h3,h4,h5,h6 {
-  margin: 0.5em 0px;
+  margin: 0.25em 0 0.25em 0
 }
 
 .page_content {
