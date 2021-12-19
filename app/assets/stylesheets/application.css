@@ -47,8 +47,8 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .banner_img {
-  width: 500px;
-  max-width: 50%;
+  width: 400px;
+  max-width: 40%;
   height: auto;
 }
 
@@ -70,6 +70,7 @@ flex-wrap: wrap;
 
 .top_bar a:link, .top_bar a:visited {
   background-color: #831416;
+  border-radius: 2pt;
   color: white;
   text-decoration-line: none;
   font-family: 'Rubik';
