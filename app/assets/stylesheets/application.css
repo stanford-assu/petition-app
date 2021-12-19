@@ -43,6 +43,7 @@ h1,h2,h3,h4,h5,h6 {
 .page_content {
   padding: 10px 20px;
   flex: 1 0 auto;
+  overflow-x: auto;
 }
 
 .banner_img {
