@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   get 'saml_metadata.xml', to: "application#metadata"
   post 'saml_logout', to:"application#saml_logout"
   
-  get '/:slug', to: "petitions#by_slug"
+  get '/:slug', to: "petitions#by_slug" #this needs to go last, so that custom slugs can't break things
 end
