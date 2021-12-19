@@ -19,8 +19,6 @@ html, body {
 }
 
 footer {
-  flex-shrink: 0;
-  width: 100%;
   text-align: center;
 }
 
@@ -29,6 +27,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  /* flex-wrap: wrap; This fixes some stuff on mobile, but breaks desktop.*/
 }
 
 .title {
