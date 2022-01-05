@@ -29,6 +29,7 @@
 .trix-content action-text-attachment .attachment {
   padding: 0 !important;
   max-width: 100% !important;
+  text-align: center;
 }
 
 .trix-content figure {

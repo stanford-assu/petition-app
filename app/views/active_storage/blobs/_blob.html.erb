@@ -1,18 +1,16 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
-    <figure>
-      <%= image_tag(blob) %>
-    </figure>
+      <%= image_tag(blob, alt: blob.try(:caption) || 'attached image with no alt text') %>
   <% else %>
-    <figcaption class="attachment__caption">
-      <% if caption = blob.try(:caption) %>
-        <%= caption %>
-      <% else %>
-        <%= link_to rails_blob_path(blob, disposition: "attachment") do %>
-          <%= image_tag "PDF_icon.png", alt: "Download file", size: "64" %> <br>
+    <%= link_to rails_blob_path(blob, disposition: "attachment") do %>
+      <%= image_tag "PDF_icon.png", alt: "download PDF file", size: "64" %> <br>
+      <figcaption class="attachment__caption">
+        <% if caption = blob.try(:caption) %>
+          <%= caption %>
+        <% else %>
           <%= blob.filename %>
-        <% end %>
-      <% end %>
-    </figcaption>
+        <% end %>    
+      </figcaption>
+    <% end %>
   <% end %>
 </figure>
