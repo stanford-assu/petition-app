@@ -16,3 +16,5 @@ This should allow production SAML to work with in the development environment.
 - Do we want to restict who can sign what type of petition?
 - Should there be different types of petitions?
 - Prevent people from editing after N signatures
+
+# Copyright assigned to the Associated Students of Stanford University, licensed publically under the GPLv2.
