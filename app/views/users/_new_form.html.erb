@@ -25,6 +25,11 @@
     <%= form.label(:coterm,'Co-Term') %>
     <%= form.check_box(:coterm) %>
   </div>
+
+  <div class="field">
+    <%= form.label(:ug_year,'Undergrad Class Year') %>
+    <%= form.select(:ug_year, UG_YEARS) %>
+  </div>
   
   <div class="field">
     <%= form.label(:admin,'Admin') %>

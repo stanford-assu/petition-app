@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2022_03_20_192309) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "coterm", default: false
+    t.integer "ug_year", default: 0
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

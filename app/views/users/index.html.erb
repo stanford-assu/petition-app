@@ -9,6 +9,7 @@ Found <%= @users.length %> users.
       <th>Name</th>
       <th>Membership</th>
       <th>Co-Term</th>
+      <th>UG Year</th>
       <th>Last Login</th>
       <th>Admin</th>
       <th colspan="3"></th>
@@ -22,6 +23,7 @@ Found <%= @users.length %> users.
         <td><%= user.name %></td>
         <td><%= user.member_type %></td>
         <td><%= user.coterm %></td>
+        <td><%= user.ug_year %></td>
         <td><%= user.last_login %></td>
         <td><%= user.admin %></td>
         <td><%= link_to 'Show', user_path(user) %></td>
