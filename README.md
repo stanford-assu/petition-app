@@ -13,8 +13,8 @@ This should allow production SAML to work with in the development environment.
 
 ### Things that still need to be done:
 - Bulk import of grad/undergrad status
-- Do we want to restict who can sign what type of petition?
-- Should there be different types of petitions?
-- Prevent people from editing after N signatures
+- Do we want to restict who can sign what type of petition? (Yes)
+- Should there be different types of petitions? (Yes)
+- Prevent people from editing after N signatures (Yes)
 
 Copyright assigned to the Associated Students of Stanford University, licensed publically under the GPLv2.

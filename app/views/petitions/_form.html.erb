@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :slug, "URL Slug:" %>
-    petition.stanford.edu/<%= form.text_field :slug %>
+    petition.stanford.edu/<%= form.text_field :slug, :maxlength => 100 %>
   </div>
 
   <div class="field">

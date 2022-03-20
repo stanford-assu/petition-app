@@ -54,12 +54,13 @@ ActiveRecord::Schema.define(version: 2021_12_13_084554) do
   end
 
   create_table "petitions", force: :cascade do |t|
-    t.string "slug"
+    t.string "slug", null: false
     t.string "title"
     t.text "content"
     t.string "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_petitions_on_slug", unique: true
   end
 
   create_table "signature_join", id: false, force: :cascade do |t|
