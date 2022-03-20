@@ -6,6 +6,8 @@
 
 <div class="field"> <strong>Affiliation: </strong><%= @user.member_type %> </div>
 
+<div class="field"> <strong>Co-Term: </strong><%= @user.coterm %> </div>
+
 <% if current_user.admin %> 
   <div class="field"> <strong>Admin: </strong> <%= @user.admin %> </div>
   <div class="link-list">

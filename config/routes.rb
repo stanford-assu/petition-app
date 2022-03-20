@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  get 'profile', to: "users#show"
 
   devise_for :users
 

@@ -20,6 +20,11 @@
     <%= form.label(:member_type,'Affilliation') %>
     <%= form.select(:member_type, User.member_types.keys) %>
   </div>
+
+  <div class="field">
+    <%= form.label(:coterm,'Co-Term') %>
+    <%= form.check_box(:coterm) %>
+  </div>
   
   <div class="field">
     <%= form.label(:admin,'Admin') %>

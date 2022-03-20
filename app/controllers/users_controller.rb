@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    unless (current_user.admin || @user.id == current_user.id)
+    unless (@user && current_user && (current_user.admin || @user.id == current_user.id))
       redirect_to action: 'index', controller: 'application'
     end
   end
@@ -64,11 +64,11 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       pp(params[:id])
-      @user  = User.find(params[:id])
+      @user = params[:id] ? User.find(params[:id]) : current_user
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :id, :member_type, :admin)
+      params.require(:user).permit(:name, :id, :member_type, :coterm, :admin)
     end
 end
