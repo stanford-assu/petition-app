@@ -6,9 +6,23 @@
 
 <div class="field"> <strong>Affiliation: </strong><%= @user.member_type %> </div>
 
-<div class="field"> <strong>Co-Term: </strong><%= @user.coterm %> </div>
+<div class="field"> <strong>Co-Term: </strong><%= @user.coterm.humanize %> </div>
 
+<% if @user.undergrad? %>
 <div class="field"> <strong>Undergrad Class Year: </strong><%= @user.ug_year %> </div>
+<% end %>
+
+<% if @user.coterm %> 
+  <p>You are listed as a Co-Term student, meaning you may opt to identify as either a Gradudate or Undergraduate for this election. 
+  Your affiliation has been set based on your billing group for winter quarter.
+  If you'd like to change it, please reach out to <a href = "mailto: elections@assu.stanford.edu">elections@assu.stanford.edu</a>.</p>
+<% end %>
+
+<% if @user.undergrad? %> 
+  <p>Your Undergrad class year is based on the number of enrolled quarters at Stanford. 
+  If this does not reflect your "social class" year, you may request to have it changed. 
+  Please reach out to <a href = "mailto: elections@assu.stanford.edu">elections@assu.stanford.edu</a>.</p>
+<% end %>
 
 <% if current_user.admin %> 
   <div class="field"> <strong>Admin: </strong> <%= @user.admin %> </div>

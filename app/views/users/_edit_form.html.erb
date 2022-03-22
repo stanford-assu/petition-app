@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label(:ug_year,'Undergrad Class Year') %>
-    <%= form.select(:ug_year, UG_YEARS) %>
+    <%= form.select(:ug_year, User.ug_years.keys) %>
   </div>
 
   <div class="field">
