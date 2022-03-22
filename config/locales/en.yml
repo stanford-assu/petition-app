@@ -30,4 +30,17 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        member_type_list:
+          undergrad: Undergraduate
+          grad: Graduate
+          neither: Neither
+        ug_year_list:
+          na: N/A
+          year1: Freshman
+          year2: Sophmore
+          year3: Junior
+          year4: Senior
+          year5: Senior+

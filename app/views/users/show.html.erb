@@ -1,15 +1,15 @@
 <h2>Voter Profile</h2>
 
-<div class="field"> <strong>Email: </strong><%= @user.id %> </div>
+<div class="field"> <strong>SUNet ID: </strong><%= @user.id %> </div>
 
 <div class="field"> <strong>Name: </strong><%= @user.name %> </div>
 
-<div class="field"> <strong>Affiliation: </strong><%= @user.member_type %> </div>
+<div class="field"> <strong>Affiliation: </strong><%= @user.translated_member_type %> </div>
 
 <div class="field"> <strong>Co-Term: </strong><%= @user.coterm.humanize %> </div>
 
 <% if @user.undergrad? %>
-<div class="field"> <strong>Undergrad Class Year: </strong><%= @user.ug_year %> </div>
+<div class="field"> <strong>Undergrad Class Year: </strong><%= @user.translated_ug_year %> </div>
 <% end %>
 
 <% if @user.coterm %> 
