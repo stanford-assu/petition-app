@@ -1,0 +1,38 @@
+<%= form_with(model: petition) do |form| %>
+  <% if petition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(petition.errors.count, "error") %> prohibited this petition from being saved:</h2>
+
+      <ul>
+        <% petition.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if current_user.admin %> 
+    <div class="field">
+      <%= form.label(:topic,'Petition Topic') %>
+      <%= form.select(:topic, options_for_select(Petition.translated_topics.map { |translation, k, _v| [translation, k] }, form.object.topic)) %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :slug, "URL Slug:" %>
+    petition.stanford.edu/<%= form.text_field :slug, :maxlength => 100 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title, "Title: " %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.rich_text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

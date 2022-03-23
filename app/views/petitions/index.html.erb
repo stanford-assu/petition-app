@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Topic</th>
       <th>Slug</th>
       <th>Sponsor</th>
       <th>Title</th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @petitions.each do |petition| %>
       <tr>
+        <td><%= petition.translated_topic %></td>
         <td><%= petition.slug %></td>
         <td><%= petition.user.id %></td>
         <td><%= petition.title %></td>

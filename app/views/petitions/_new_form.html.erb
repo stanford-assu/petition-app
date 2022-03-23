@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label(:topic,'Petition Topic') %>
+    <%= form.select(:topic, options_for_select(Petition.translated_topics.map { |translation, k, _v| [translation, k] })) %>
+  </div>
+
+  <div class="field">
     <%= form.label :slug, "URL Slug:" %>
     petition.stanford.edu/<%= form.text_field :slug, :maxlength => 100 %>
   </div>

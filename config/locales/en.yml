@@ -44,3 +44,12 @@ en:
           year3: Junior
           year4: Senior
           year5: Senior+
+      petition:
+        topic_list:
+          exec: Executive President
+          ugs: Undergraduate Senate
+          ag_petition: Annual Grant Petition
+          petition: General Petition
+          class_pres1: Sophmore Class Presidents
+          class_pres2: Junior Class Presidents
+          class_pres3: Senior Class Presidents

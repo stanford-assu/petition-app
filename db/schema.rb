@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2022_03_20_192309) do
     t.string "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "topic"
     t.index ["slug"], name: "index_petitions_on_slug", unique: true
   end
 
