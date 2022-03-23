@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_paper_trail_whodunnit
   before_action :authenticate_user!, only: :logged_in
   skip_before_action :verify_authenticity_token, only: :saml_callback
   

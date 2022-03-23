@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'humanize_boolean'
 gem 'translate_enum'
 
+gem 'paper_trail', '~> 12'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

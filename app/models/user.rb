@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     include TranslateEnum
-    
+    has_paper_trail
     devise :timeoutable
 
     enum member_type: {neither:nil, grad:1, undergrad:2}, _default: :neither

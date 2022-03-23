@@ -178,6 +178,9 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     os (1.1.4)
+    paper_trail (12.3.0)
+      activerecord (>= 5.2)
+      request_store (~> 1.1)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.5.2)
@@ -225,6 +228,8 @@ GEM
       declarative (< 0.1.0)
       trailblazer-option (>= 0.1.1, < 0.2.0)
       uber (< 0.2.0)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -311,6 +316,7 @@ DEPENDENCIES
   humanize_boolean
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  paper_trail (~> 12)
   pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
