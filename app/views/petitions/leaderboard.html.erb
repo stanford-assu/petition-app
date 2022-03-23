@@ -1,21 +1,30 @@
-<h2>All Petitions</h2>
+<% Petition.translated_topics.map do |translated_topic, topic| %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Sponsor</th>
-      <th>Signees</th>
-    </tr>
-  </thead>
+  <h2><%= translated_topic %></h2>
 
-  <tbody>
-    <% @petitions.each do |petition| %>
-      <tr>
-        <td><%= link_to petition.title, "/"+petition.slug %></td>
-        <td><%= petition.user.id %></td>
-        <td><%= petition.signees.length %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% topic_petitions = @petitions.select { |petition| petition.topic == topic } %> 
+
+  <% if (topic_petitions.length >= 1) %>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Sponsor</th>
+          <th>Signees</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% topic_petitions.each do |petition| %>
+          <tr>
+            <td><%= link_to petition.title, "/"+petition.slug %></td>
+            <td><%= petition.user.id %></td>
+            <td><%= petition.signees.length %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table> 
+  <% else %>
+  No Petitions Yet!
+  <% end %>
+<% end %>
