@@ -55,37 +55,37 @@ class Petition < ApplicationRecord
         case self.topic
         when "exec"
             if user.neither?
-                errors.add :base, "Must be a member to sign for Executive President!"
-                throw(:abort)
+                errors.add :base, "Must be a member to sign Executive petitions"
+                raise "Unable to sign!"
             end
         when "ugs"
             if not user.undergrad?
-                errors.add :base, "Must be an undergrad to sign for UGS!"
+                errors.add :base, "Must be an Undergrad to sign UGS petitions!"
                 raise "Unable to sign!"
             end
         when "ag_petition"
             if user.neither?
-                errors.add :base, "Must be a member to sign for Annual Grants!"
+                errors.add :base, "Must be a member to sign Annual Grants petitions!"
                 raise "Unable to sign!"
             end
         when "petition"
             if user.neither?
-                errors.add :base, "Must be a member to sign a general petition!"
+                errors.add :base, "Must be a member to sign general petitions!"
                 raise "Unable to sign!"
             end
         when "class_pres1"
             if not user.year1?
-                errors.add :base, "Must be a Freshman to sign for Sophomore Class President!"
+                errors.add :base, "Must be a Freshman to sign Sophomore Class President petitions!"
                 raise "Unable to sign!"
             end
         when "class_pres2"
             if not user.year2?
-                errors.add :base, "Must be a Sophomore to sign for Junior Class President!"
+                errors.add :base, "Must be a Sophomore to sign Junior Class President petitions!"
                 raise "Unable to sign!"
             end
         when "class_pres3"
             if not user.year3?
-                errors.add :base, "Must be a Junior to sign for Senior Class President!"
+                errors.add :base, "Must be a Junior to sign Senior Class President petitions!"
                 raise "Unable to sign!"
             end
         end

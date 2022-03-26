@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post 'saml_logout', to:"application#saml_logout"
   
   get '/:slug', to: "petitions#by_slug" #this needs to go last, so that custom slugs can't break things
-  post '/:slug', to: "petitions#sign_by_slug" #this needs to go last, so that custom slugs can't break things
-  delete '/:slug', to: "petitions#unsign_by_slug" #this needs to go last, so that custom slugs can't break things
+  post '/:slug', to: "petitions#sign" #this needs to go last, so that custom slugs can't break things
+  delete '/:slug', to: "petitions#unsign" #this needs to go last, so that custom slugs can't break things
 
 end

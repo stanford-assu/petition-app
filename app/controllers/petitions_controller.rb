@@ -1,6 +1,6 @@
 class PetitionsController < ApplicationController
-  before_action :set_petition, only: %i[ show edit update destroy sign unsign]
-  before_action :set_petition_by_slug, only: %i[ by_slug sign_by_slug unsign_by_slug ]
+  before_action :set_petition, only: %i[ show edit update destroy ]
+  before_action :set_petition_by_slug, only: %i[ by_slug sign unsign ]
   before_action :require_user, :except => [ :by_slug, :leaderboard ]
   before_action :check_petition_access, only: [ :show, :edit, :update, :destroy ]
 
@@ -25,7 +25,7 @@ class PetitionsController < ApplicationController
     render "show_public"
   end
 
-  def sign_by_slug
+  def sign
     @petition.signees << current_user
     flash[:notice] = 'Petition signed!'
     render "show_public"
@@ -33,7 +33,7 @@ class PetitionsController < ApplicationController
     render "show_public"
   end
 
-  def unsign_by_slug
+  def unsign
     @petition.signees.delete(current_user)
     flash[:notice] = 'Petition signature removed!'
     render "show_public"
@@ -48,22 +48,6 @@ class PetitionsController < ApplicationController
 
   # GET /petitions/1/edit
   def edit
-  end
-
-  def sign
-    @petition.signees << current_user
-    flash[:notice] = 'Petition signed!'
-    render "show"
-  rescue
-    render "show"
-  end
-
-  def unsign
-    @petition.signees.delete(current_user)
-    flash[:notice] = 'Petition signature removed!'
-    render "show"
-  rescue
-    render "show"
   end
 
   # POST /petitions or /petitions.json
