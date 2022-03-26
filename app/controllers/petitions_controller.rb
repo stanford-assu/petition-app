@@ -1,6 +1,6 @@
 class PetitionsController < ApplicationController
   before_action :set_petition, only: %i[ show edit update destroy sign unsign]
-  before_action :set_petition_by_slug, only: %i[ by_slug ]
+  before_action :set_petition_by_slug, only: %i[ by_slug sign_by_slug unsign_by_slug ]
   before_action :require_user, :except => [ :by_slug, :leaderboard ]
   before_action :check_petition_access, only: [ :show, :edit, :update, :destroy ]
 
@@ -25,6 +25,22 @@ class PetitionsController < ApplicationController
     render "show_public"
   end
 
+  def sign_by_slug
+    @petition.signees << current_user
+    flash[:notice] = 'Petition signed!'
+    render "show_public"
+  rescue
+    render "show_public"
+  end
+
+  def unsign_by_slug
+    @petition.signees.delete(current_user)
+    flash[:notice] = 'Petition signature removed!'
+    render "show_public"
+  rescue
+    render "show_public"
+  end
+
   # GET /petitions/new
   def new
     @petition = Petition.new
@@ -35,19 +51,19 @@ class PetitionsController < ApplicationController
   end
 
   def sign
-    if !@petition.signees.exists?(current_user.id)
-      current_user.signatures << @petition
-      flash[:notice] = 'Petition signed!'
-    end
-    redirect_back(fallback_location: root_path)
+    @petition.signees << current_user
+    flash[:notice] = 'Petition signed!'
+    render "show"
+  rescue
+    render "show"
   end
 
   def unsign
-    if @petition.signees.exists?(current_user.id)
-      current_user.signatures.delete(@petition)
-      flash[:notice] = 'Petition signature removed!'
-    end
-    redirect_back(fallback_location: root_path)
+    @petition.signees.delete(current_user)
+    flash[:notice] = 'Petition signature removed!'
+    render "show"
+  rescue
+    render "show"
   end
 
   # POST /petitions or /petitions.json

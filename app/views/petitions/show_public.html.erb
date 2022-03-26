@@ -2,6 +2,18 @@
   <%= @petition.title %>
 </h2>
 
+<% if @petition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@petition.errors.count, "error") %> prohibited this petition from being signed:</h2>
+
+      <ul>
+        <% @petition.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
 <div class="field"> 
   <strong>Petition Topic: </strong><%= @petition.translated_topic %> 
 </div>
@@ -17,9 +29,9 @@
 <div class="link-list">
   <% if user_signed_in? %> 
     <% if @petition.signees.exists?(current_user.id) %>
-      <%= link_to 'Unsign Petition', unsign_petition_path(@petition), method: :delete %>
+      <%= link_to 'Unsign Petition', "/"+@petition.slug, method: :delete %>
     <% else %>
-      <%= link_to 'Sign Petition', sign_petition_path(@petition), method: :post %>
+      <%= link_to 'Sign Petition', "/"+@petition.slug, method: :post %>
     <% end %>
   <% else %>
     <%= link_to 'Login to Sign Petition', saml_login_path, method: :post %>

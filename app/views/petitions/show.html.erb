@@ -2,6 +2,18 @@
   <%= @petition.title %>
 </h2>
 
+<% if @petition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@petition.errors.count, "error") %> prohibited this petition from being signed:</h2>
+
+      <ul>
+        <% @petition.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
 <div class="field"> 
   <strong>Petition Topic: </strong><%= @petition.translated_topic %> 
 </div>
