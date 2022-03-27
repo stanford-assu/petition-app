@@ -2,6 +2,11 @@
 
 Found <%= @users.length %> users.
 
+<%= form_tag(users_path(:id), method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag("Search") %>
+<%end%>
+
 <div>
   <table>
     <thead>

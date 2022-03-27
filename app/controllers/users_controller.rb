@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   
   # GET /users or /users.json
   def index
-    @users = User.all
+    if params[:search] && !params[:search].empty?
+      @users = User.all.where("lower(id) LIKE :search", search:"%#{ params[:search].downcase }%")
+    else
+      @users = User.all.partition{|v| v.admin == true}.flatten # sort by admin-first
+    end
   end
 
   # GET /users/1 or /users/1.json
