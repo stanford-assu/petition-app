@@ -53,9 +53,11 @@
     <%= yield %>
   </div>
 
-  <div class="logo">
-    <%= image_tag("ASSU-Logo-Primary-RGB.png", :alt => "ASSU Logo Banner", :class => "banner_img") %>
-  </div>
+  <% if !current_page?(:controller => 'application', :action => 'index') # hacky %>
+    <div class="logo">
+      <%= image_tag("ASSU-Logo-Primary-RGB.png", :alt => "ASSU Logo Banner", :class => "banner_img") %>
+    </div>
+  <% end %>
 
   </body>
 </html>

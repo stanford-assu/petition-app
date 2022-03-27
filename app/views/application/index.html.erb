@@ -15,14 +15,88 @@
   margin-top: 20px;
 }
 
+.idx_banner_img {
+  width: 500px;
+  max-width: 50%;
+  height: auto;
+}
+
+#front-table td{
+  padding: 5px 5px;
+}
+
 </style>
 
+<div class="logo">
+  <%= image_tag("ASSU-Logo-Primary-RGB.png", :alt => "ASSU Logo Banner", :class => "idx_banner_img") %>
+</div>
+
 <div id="narrow">
+
   <div id="welcome">
-    <h1 class="title">Welcome to the ASSU Petitioning Portal</h1>
-    This site will be used for all petitioning in the <a href="https://assu.stanford.edu/elections/election-2022">2022 ASSU Elections</a>.
-    Development is mostly complete, but there are a few features and tweaks still under development. Feel free to play around and experiment with making and signing petitions.
-    All data will be wiped in advance of the official petitioning period.
+    <h1 class="title">Welcome to the ASSU Petitioning Portal</h1> <br>
+    We invite you to use this site to create and sign petitions for the <a href="https://assu.stanford.edu/elections/election-2022">2022 ASSU Election</a>.
+    Based on your enrollment status, you may be able to run for specific elected offices and sign eligible petitions.
+    Once you login, you can view your enrollment status in the “Voter Profile” tab. <br> <br>
+
+    To create a petition, go to “My Petitions” and click on “New Petition.”
+    Please make sure to complete all the required fields. <br> <br>
+
+    To sign a petition, go to “All Petitions,” click on the petition you are interested in and press “Sign Petition.” <br> <br>
+
+    To be placed on the ballot, candidates and slates must receive a minimum number of signatures: <br> <br>
+
+    <table id="front-table">
+      <thead>
+        <tr>
+          <th>Petition Type</th>
+          <th>Signatures Needed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Executive Slate
+          </td>
+          <td>
+            200 from undergraduates or graduate students
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Undergraduate Senator
+          </td>
+          <td>
+            100 from undergraduate students
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Class President Slate
+          </td>
+          <td>
+            100 from undergraduate students from enrollment class
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Graduate Student Councilor
+          </td>
+          <td>
+            No signature threshold
+          </td>
+        </tr>
+        <tr>
+          <td>
+            General Petitions
+          </td>
+          <td>
+            5% of the student body for symbolic actions, 15% for referendums, recalls and amendments, 10% otherwise 
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
 
   <div id="tech-notes">
@@ -37,4 +111,5 @@
       <li>If you've discovered a security vulnerability or data leak, please let us know! We will reward you with late night.</li>
     </ul>
   </div>
+
 </div>
