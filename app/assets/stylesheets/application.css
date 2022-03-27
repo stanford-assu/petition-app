@@ -22,7 +22,7 @@ html, body {
   height: 100%;
 }
 
-footer {
+footer.logo {
   text-align: center;
 }
 
@@ -34,8 +34,6 @@ body {
   /* flex-wrap: wrap; This fixes some stuff on mobile, but breaks desktop.*/
 }
 
-
-
 h1,h2,h3,h4,h5,h6 {
   margin: 0.25em 0 0.25em 0
 }
@@ -44,6 +42,9 @@ h1,h2,h3,h4,h5,h6 {
   padding: 10px 20px;
   flex: 1 0 auto;
   overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5%;
 }
 
 .banner_img {
@@ -94,6 +95,22 @@ flex-wrap: wrap;
 }
 
 th,td {
-  padding: 2px 5px;
+  padding: 0px 2px;
   text-align: left;
 }
+
+.title {
+  text-align: center;
+  padding: 10px;
+}
+
+table{
+  /* margin: -5px 0 15px 0; */
+  border-spacing: 8px 4px;
+}
+
+th{
+  border-bottom: 2px solid black;
+  border-spacing: 15px;
+}
+

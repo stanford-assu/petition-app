@@ -1,22 +1,42 @@
-<% flash.each do |name, msg| %>
-  <% if msg.is_a?(String) %>
-    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-      <%=raw content_tag :div, msg, id:"flash_#{name}" %>
-    </div>
-  <% end %>
-<% end %>
+<style>
+#narrow {
+  flex-grow: 1; 
+  display: flex; 
+  flex-direction: column;
+  max-width: 1500px;
+  align-self: center;
+}
 
-<h2 class="title">Welcome to the new ASSU Petitioning Interface!</h2>
-Feel free to explore the public pages, login and create/sign petitions.
-<br><br>
-Things that still need to be done:
-<ul>
-  <li>Bulk import of grad/undergrad status</li>
-  <li>Do we want to restict who can sign what type of petition?</li>
-  <li>Should there be different types of petitions?</li>
-  <li>Prevent people from editing after N signatures</li>
-</ul>
-<br>
-Developed by Tim Vrakas, send all feeback to timv@assu.stanford.edu
+#welcome {
+  flex-grow: 1
+}
 
-</ul>
+#tech-notes{
+  margin-top: 20px;
+}
+
+</style>
+
+<div id="narrow">
+  <div id="welcome">
+    <h1 class="title">Welcome to the ASSU Petitioning Portal</h1>
+    This site will be used for all petitioning in the <a href="https://assu.stanford.edu/elections/election-2022">2022 ASSU Elections</a>.
+    Development is mostly complete, but there are a few features and tweaks still under development. Feel free to play around and experiment with making and signing petitions.
+    All data will be wiped in advance of the official petitioning period.
+  </div>
+
+
+
+  <div id="tech-notes">
+    <h3>Technical Notes</h3>
+    This site was developed by Tim Vrakas, a member of the <a href="https://assu.stanford.edu/gsc">Graduate Student Council</a>, 
+    volunteering to help the <a href="https://assu.stanford.edu/elections/elections-commission">Elections Commission</a>.
+    The site was built using <a href="https://rubyonrails.org/">Ruby on Rails</a>, a modern web framework. 
+    It integrates into Stanford's SAML login system, and cross-references enrollment data to validate all signatures.
+    <ul>
+      <li>If you're interested in a job developing software to help the student body, join <a href="https://cardinallabs.stanford.edu/">Cardinal Labs!</a></li>
+      <li>Please send all feeback to <a href="mailto:timv@assu.stanford.edu">timv@assu.stanford.edu</a>.</li>
+      <li>If you've discovered a security vulnerability or data leak, please let us know! We will reward you with late night.</li>
+    </ul>
+  </div>
+</div>

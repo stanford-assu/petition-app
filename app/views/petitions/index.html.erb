@@ -1,33 +1,35 @@
 <h2>My Petitions</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Topic</th>
-      <th>Slug</th>
-      <th>Sponsor</th>
-      <th>Title</th>
-      <th>Signees</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @petitions.each do |petition| %>
+<div>
+  <table>
+    <thead>
       <tr>
-        <td><%= petition.translated_topic %></td>
-        <td><%= petition.slug %></td>
-        <td><%= petition.user.id %></td>
-        <td><%= petition.title %></td>
-        <td><%= petition.signees.length %></td>
-        <td><%= link_to 'Show', petition %></td>
-        <td><%= link_to 'Public View', "/"+petition.slug %></td>
-        <td><%= link_to 'Edit', edit_petition_path(petition) %></td>
-        <td><%= link_to 'Delete', petition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Topic</th>
+        <th>Slug</th>
+        <th>Sponsor</th>
+        <th>Title</th>
+        <th>Signees</th>
+        <th colspan="4"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @petitions.each do |petition| %>
+        <tr>
+          <td><%= petition.translated_topic %></td>
+          <td><%= petition.slug %></td>
+          <td><%= petition.user.id %></td>
+          <td><%= petition.title %></td>
+          <td><%= petition.signees.length %></td>
+          <td><%= link_to 'Show', petition %></td>
+          <td><%= link_to 'Public View', "/"+petition.slug %></td>
+          <td><%= link_to 'Edit', edit_petition_path(petition) %></td>
+          <td><%= link_to 'Delete', petition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>
 
 <div class="link-list">
   <%= link_to 'New Petition', new_petition_path %>

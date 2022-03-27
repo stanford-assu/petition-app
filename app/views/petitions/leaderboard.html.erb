@@ -1,30 +1,45 @@
+<style>
+.lbrd_section {
+  background-color: lightgray;
+  margin: 5px;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.lbrd_title{
+  margin:0;
+}
+
+</style>
+
 <% Petition.translated_topics.map do |translated_topic, topic| %>
+  <div class="lbrd_section">
+    <h2 class="lbrd_title"><%= translated_topic %></h2>
 
-  <h2><%= translated_topic %></h2>
+    <% topic_petitions = @petitions.select { |petition| petition.topic == topic } %> 
 
-  <% topic_petitions = @petitions.select { |petition| petition.topic == topic } %> 
-
-  <% if (topic_petitions.length >= 1) %>
-    <table class="lbrd_topic">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Sponsor</th>
-          <th>Signees</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% topic_petitions.each do |petition| %>
+    <% if (topic_petitions.length >= 1) %>
+      <table class="lbrd_topic">
+        <thead>
           <tr>
-            <td><%= link_to petition.title, "/"+petition.slug %></td>
-            <td><%= petition.user.id %></td>
-            <td><%= petition.signees.length %></td>
+            <th>Title</th>
+            <th>Sponsor</th>
+            <th>Signees</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table> 
-  <% else %>
-  <div class="lbrd_topic"> No Petitions Yet! </div>
-  <% end %>
+        </thead>
+
+        <tbody>
+          <% topic_petitions.each do |petition| %>
+            <tr>
+              <td><%= link_to petition.title, "/"+petition.slug %></td>
+              <td><%= petition.user.id %></td>
+              <td><%= petition.signees.length %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+    <% else %>
+    <div class="lbrd_topic"> No Petitions Yet! </div>
+    <% end %>
+  </div>
 <% end %>

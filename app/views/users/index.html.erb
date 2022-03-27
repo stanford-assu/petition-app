@@ -2,38 +2,40 @@
 
 Found <%= @users.length %> users.
 
-<table>
-  <thead>
-    <tr>
-      <th>EPPN</th>
-      <th>Name</th>
-      <th>Membership</th>
-      <th>Co-Term</th>
-      <th>UG Year</th>
-      <th>Last Login</th>
-      <th>Admin</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+<div>
+  <table>
+    <thead>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.member_type %></td>
-        <td><%= user.coterm %></td>
-        <td><%= user.ug_year %></td>
-        <td><%= user.last_login %></td>
-        <td><%= user.admin %></td>
-        <td><%= link_to 'Show', user_path(user) %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user_path(user), method: :delete,
-                         data: { confirm: 'Are you sure?' } %></td>
+        <th>EPPN</th>
+        <th>Name</th>
+        <th>Membership</th>
+        <th>Co-Term</th>
+        <th>UG Year</th>
+        <th>Last Login</th>
+        <th>Admin</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.member_type %></td>
+          <td><%= user.coterm %></td>
+          <td><%= user.ug_year %></td>
+          <td><%= user.last_login %></td>
+          <td><%= user.admin %></td>
+          <td><%= link_to 'Show', user_path(user) %></td>
+          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+          <td><%= link_to 'Destroy', user_path(user), method: :delete,
+                          data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <div class="link-list">
   <%= link_to 'New User', new_user_path %>
