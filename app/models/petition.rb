@@ -9,6 +9,10 @@ class PetitionValidator < ActiveModel::Validator
             if not petition.user.undergrad?
                 petition.errors.add :base, "Must be an undergrad to petition for UGS!"
             end
+        when "gsc"
+            if not petition.user.grad?
+                petition.errors.add :base, "Must be a Graduate Student to petition for Graduate Student Council!"
+            end
         when "ag_petition"
             if petition.user.neither?
                 petition.errors.add :base, "Must be a member to petition for Annual Grants!"
@@ -49,7 +53,7 @@ class Petition < ApplicationRecord
     validates :title, length: { in: 1..100 }
     validates :agree, acceptance: { message: 'must be checked' }
 
-    enum topic: {exec:0, ugs:1, ag_petition:2, petition:3, class_pres1:4, class_pres2:5, class_pres3:6}
+    enum topic: {exec:0, ugs:1, gsc:2, ag_petition:3, petition:4, class_pres1:5, class_pres2:6, class_pres3:7}
     translate_enum :topic
 
     def check_valid_sig(user)
@@ -62,6 +66,11 @@ class Petition < ApplicationRecord
         when "ugs"
             if not user.undergrad?
                 errors.add :base, "Must be an Undergrad to sign UGS petitions!"
+                raise "Unable to sign!"
+            end
+        when "gsc"
+            if not user.grad?
+                errors.add :base, "Must be a Graduate Student to sign Graduate Student Council petitions!"
                 raise "Unable to sign!"
             end
         when "ag_petition"
