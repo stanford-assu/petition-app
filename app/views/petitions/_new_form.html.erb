@@ -1,3 +1,15 @@
+<style>
+#agreement-text{
+  margin: 20px 20px;
+}
+
+.field>div{
+  display: inline-block;
+}
+
+</style>
+
+
 <%= form_with(model: petition) do |form| %>
   <% if petition.errors.any? %>
     <div id="error_explanation">
@@ -30,7 +42,19 @@
     <%= form.rich_text_area :content %>
   </div>
 
+  <div id="agreement-text">
+    I hereby certify, under penalty of disqualification, that I am a full-time, enrolled student of Stanford University, and that the above information is correct to the best of my knowledge. 
+    I agree to abide by the ASSU Constitution, Association By-Laws, Election Code and Stanford University rules and policies. 
+    I understand that I am responsible for all information contained in the Election Handbook and the information that will be presented at the Candidate Orientation as well as future announcements from the Election Commission. 
+    I also understand that any violation of election, Association or University rules could result in sanction and/or disqualification from the election.
+    <div class="field">
+    <%= form.label :agree, "Agree: " %>
+    <%= form.check_box :agree %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+  <br>
 <% end %>

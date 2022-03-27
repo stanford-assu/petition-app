@@ -108,7 +108,7 @@ class PetitionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def petition_params
-      new_params = params.require(:petition).permit(:slug, :title, :topic, :content)
+      new_params = params.require(:petition).permit(:slug, :title, :topic, :content, :agree)
       new_params[:slug].gsub!(/[^0-9a-z \-_]/i, '') #Trim special chars from slug
       new_params
     end

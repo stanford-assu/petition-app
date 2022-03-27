@@ -33,7 +33,6 @@
         Logged in as <%= current_user.id %>
         <%= link_to "Logout", saml_logout_path, method: :post %>
       <% else %>
-        <!-- <%= button_to "Login", action: :saml_login, :controller => "application" %> -->
         <%= link_to "Login", saml_login_path, method: :post %>
       <% end %>
     </div>

@@ -47,6 +47,7 @@ class Petition < ApplicationRecord
     has_rich_text :content
     validates :slug, length: { in: 1..100 }, uniqueness: true
     validates :title, length: { in: 1..100 }
+    validates :agree, acceptance: { message: 'must be checked' }
 
     enum topic: {exec:0, ugs:1, ag_petition:2, petition:3, class_pres1:4, class_pres2:5, class_pres3:6}
     translate_enum :topic
