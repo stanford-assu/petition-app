@@ -12,9 +12,6 @@
   </head>
 
   <body>
-  
-  <!-- <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p> -->
 
   <div class="top_bar">
 
@@ -43,13 +40,22 @@
 
   </div>
 
+  <% if notice %> 
+    <div class="notice"><%= notice %></div>
+  <% end %>
+
+  <% if alert %> 
+  <div class="alert"><%= alert %></div>
+  <% end %>
+
+
   <div class = "page_content">
     <%= yield %>
   </div>
 
-  <footer class="logo">
+  <div class="logo">
     <%= image_tag("ASSU-Logo-Primary-RGB.png", :alt => "ASSU Logo Banner", :class => "banner_img") %>
-  </footer>
+  </div>
 
   </body>
 </html>

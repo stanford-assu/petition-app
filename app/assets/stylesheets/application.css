@@ -22,7 +22,7 @@ html, body {
   height: 100%;
 }
 
-footer.logo {
+.logo {
   text-align: center;
 }
 
@@ -114,3 +114,8 @@ th{
   border-spacing: 15px;
 }
 
+.notice, .alert{
+  padding: 20px 0px 0px 20px;
+  font-size: larger;
+  font-weight: bold;
+}

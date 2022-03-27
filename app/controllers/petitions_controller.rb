@@ -1,6 +1,7 @@
 class PetitionsController < ApplicationController
   before_action :set_petition, only: %i[ show edit update destroy ]
   before_action :set_petition_by_slug, only: %i[ by_slug sign unsign ]
+  before_action :check_editable, only: %i[ edit update ]
   before_action :require_user, :except => [ :by_slug, :leaderboard ]
   before_action :check_petition_access, only: [ :show, :edit, :update, :destroy ]
 
@@ -87,6 +88,15 @@ class PetitionsController < ApplicationController
   end
 
   private
+
+    # If more than 10 signees, don't let the use edit
+    def check_editable
+      if (@petition.signees.length > 10)
+        flash[:notice] = 'Petitions with more than 10 signatures cannot be edited, please reach out to elections@assu.stanford.edu for help.'
+        redirect_to action: 'show'
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_petition
       @petition = Petition.find(params[:id])
