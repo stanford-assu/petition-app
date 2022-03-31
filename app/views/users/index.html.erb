@@ -1,6 +1,8 @@
 <h2>Users</h2>
 
-Found <%= @users.length %> users.
+Found <%= @users.length %> users. <br>
+Undergrads: <%= @users.select { |u| u.member_type == 'undergrad' }.length %> <br>
+Grads: <%= @users.select { |u| u.member_type == 'grad' }.length %> <br>
 
 <%= form_tag(users_path(:id), method: :get) do %>
   <%= text_field_tag(:search, params[:search]) %>
