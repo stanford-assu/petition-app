@@ -56,6 +56,13 @@ class Petition < ApplicationRecord
     enum topic: {exec:0, ugs:1, gsc:2, ag_petition:3, petition:4, class_pres1:5, class_pres2:6, class_pres3:7}
     translate_enum :topic
 
+    validate :has_too_many_petitions
+    def has_too_many_petitions
+        if user.petitions.count > 10
+            errors.add :base, "You can't have more than 10 petitions. Let us know if this poses an issue."
+        end
+    end
+
     def check_valid_sig(user)
         case self.topic
         when "exec"
