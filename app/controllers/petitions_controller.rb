@@ -110,6 +110,7 @@ class PetitionsController < ApplicationController
     def petition_params
       new_params = params.require(:petition).permit(:slug, :title, :topic, :content, :agree)
       new_params[:slug].gsub!(/[^0-9a-z \-_]/i, '') #Trim special chars from slug
+      new_params[:slug].downcase!
       new_params
     end
 
