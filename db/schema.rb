@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_23_060514) do
+ActiveRecord::Schema.define(version: 2022_04_02_051455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2022_03_23_060514) do
   create_table "signature_join", id: false, force: :cascade do |t|
     t.bigint "petition_id"
     t.string "user_id"
+    t.index ["petition_id", "user_id"], name: "by_user_and_sig", unique: true
     t.index ["petition_id"], name: "index_signature_join_on_petition_id"
     t.index ["user_id"], name: "index_signature_join_on_user_id"
   end

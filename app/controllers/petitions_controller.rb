@@ -27,21 +27,17 @@ class PetitionsController < ApplicationController
   end
 
   def sign
-    if !@petition.signees.exists?(current_user.id)
-      @petition.signees << current_user
-      flash[:notice] = 'Petition signed!'
-      render "show_public"
-    end
+    @petition.signees << current_user
+    flash[:notice] = 'Petition signed!'
+    render "show_public"
   rescue
     render "show_public"
   end
 
   def unsign
-    if @petition.signees.exists?(current_user.id)
-      @petition.signees.delete(current_user)
-      flash[:notice] = 'Petition signature removed!'
-      render "show_public"
-    end
+    @petition.signees.delete(current_user)
+    flash[:notice] = 'Petition signature removed!'
+    render "show_public"
   rescue
     render "show_public"
   end
