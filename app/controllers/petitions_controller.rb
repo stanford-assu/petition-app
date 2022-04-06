@@ -103,7 +103,7 @@ class PetitionsController < ApplicationController
     end
     
     def set_petition_by_slug
-      @petition = Petition.find_by!(slug: params[:slug])
+      @petition = Petition.find_by!(slug: params[:slug].downcase)
     end
 
     # Only allow a list of trusted parameters through.
