@@ -28,19 +28,19 @@ class PetitionsController < ApplicationController
 
   def sign
   #### Uncomment to allow signing!
-  #   @petition.signees << current_user
-  #   flash[:notice] = 'Petition signed!'
-  #   render "show_public"
-  # rescue
+    @petition.signees << current_user
+    flash[:notice] = 'Petition signed!'
+    render "show_public"
+  rescue
     render "show_public"
   end
 
   def unsign
   #### Uncomment to allow signing!
-  #   @petition.signees.delete(current_user)
-  #   flash[:notice] = 'Petition signature removed!'
-  #   render "show_public"
-  # rescue
+    @petition.signees.delete(current_user)
+    flash[:notice] = 'Petition signature removed!'
+    render "show_public"
+  rescue
     render "show_public"
   end
 
