@@ -53,6 +53,8 @@ gem 'paper_trail', '~> 12'
 gem 'ruby-saml', '~> 1.13.0'
 gem 'devise'
 
+gem 'google-cloud-storage'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
