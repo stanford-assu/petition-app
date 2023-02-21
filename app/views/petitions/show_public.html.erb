@@ -23,7 +23,7 @@
         <%= button_to 'Sign Petition', "/"+@petition.slug, method: :post %>
       <% end %>
     <% else %>
-      <%= link_to 'Login to Sign Petition', saml_login_path %>
+      <%= button_to "Login to Sign Petition", saml_login_path, data: { turbo: false }  %>
     <% end %>
   </div>
 

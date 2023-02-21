@@ -67,6 +67,7 @@ flex-wrap: wrap;
 .login {
   margin-left: auto;
   margin-right: 0;
+  padding: 0px 3px;
 }
 
 .top_bar a:link, .top_bar a:visited {
@@ -75,6 +76,32 @@ flex-wrap: wrap;
   color: white;
   text-decoration-line: none;
   font-family: 'Rubik';
+}
+
+.login input {
+  background-color: #831416;
+  border-radius: 2pt;
+  color: white;
+  text-decoration-line: none;
+  font: inherit;
+  border: none;
+  margin: 0;
+}
+
+.login form {
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+input[type=submit] {
+  border: none;
+  border-radius: 2pt;
+  color: white;
+  font: inherit;
+  font-size: 16px;
+  height: 25px;
+  background-color: #831416;
 }
 
 .field {
