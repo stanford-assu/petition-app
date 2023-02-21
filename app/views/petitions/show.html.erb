@@ -23,7 +23,9 @@
   <%= link_to 'Edit', edit_petition_path(@petition) %> |
   <%= link_to 'Back', petitions_path %> |
   <%= link_to 'Public View', "/" + @petition.slug %> |
-  <%= link_to 'Delete', @petition, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Delete', @petition, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?" } %>
 </div>
 
 <div class="signature-list">

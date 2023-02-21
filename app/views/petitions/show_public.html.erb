@@ -1,47 +1,49 @@
-<h2>
-  <%= @petition.title %>
-</h2>
+<turbo-frame id="petition_pub">
+  <h2>
+    <%= @petition.title %>
+  </h2>
 
-<div class="field"> 
-  <strong>Petition Topic: </strong><%= @petition.translated_topic %> 
-</div>
+  <div class="field"> 
+    <strong>Petition Topic: </strong><%= @petition.translated_topic %> 
+  </div>
 
-<div class="field"> 
-  <strong>Sponsor:</strong> <%= @petition.user.id %> (<%= @petition.user.name %>)
-</div>
+  <div class="field"> 
+    <strong>Sponsor:</strong> <%= @petition.user.id %> (<%= @petition.user.name %>)
+  </div>
 
-<div class="content">
-  <%= @petition.content %>
-</div>
+  <div class="content">
+    <%= @petition.content %>
+  </div>
 
-<div class="link-list">
-  <% if user_signed_in? %> 
-    <% if @petition.signees.exists?(current_user.id) %>
-      <%= link_to 'Unsign Petition', "/"+@petition.slug, method: :delete %>
+  <div class="link-list">
+    <% if user_signed_in? %> 
+      <% if @petition.signees.exists?(current_user.id) %>
+        <%= button_to 'Unsign Petition', "/"+@petition.slug, method: :delete %>
+      <% else %>
+        <%= button_to 'Sign Petition', "/"+@petition.slug, method: :post %>
+      <% end %>
     <% else %>
-      <%= link_to 'Sign Petition', "/"+@petition.slug, method: :post %>
+      <%= link_to 'Login to Sign Petition', saml_login_path %>
     <% end %>
-  <% else %>
-    <%= link_to 'Login to Sign Petition', saml_login_path, method: :post %>
-  <% end %>
-</div>
+  </div>
 
-<% if @petition.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@petition.errors.count, "error") %> prohibited this petition from being signed:</h3>
-      <ul>
-        <% @petition.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
-
-<div class="signature-list">
-  <strong> <%= @petition.signees.length %> Signees: </strong>
-  <% @petition.signees.each do |signee| %>
-    <div class="signature">
-      <%= signee.id %> (<%= signee.name %>)
-    </div>
+  <% if @petition.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= pluralize(@petition.errors.count, "error") %> prohibited this petition from being signed:</h3>
+        <ul>
+          <% @petition.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
   <% end %>
-</div>
+
+  <div class="signature-list">
+    <strong> <%= @petition.signees.length %> Signees: </strong>
+    <% @petition.signees.each do |signee| %>
+      <div class="signature">
+        <%= signee.id %> (<%= signee.name %>)
+      </div>
+    <% end %>
+  </div>
+</turbo-frame>
