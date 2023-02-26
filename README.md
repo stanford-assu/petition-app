@@ -13,6 +13,7 @@ This should allow production SAML to work with in the development environment.
 
 ### To use under Github CodeSpaces:
 - start a new CodeSpaces instance. The install will take several minutes to complete.
+- run `rails db:migrate` to fill in the database with empty tables
 - run `rails server` to start the server
 - under the "Ports" tab, open the port 3001 link
 

@@ -6,4 +6,3 @@ sudo apt install -y postgresql
 sudo pg_ctlcluster 12 main start
 sudo sh -c 'sudo -u postgres createuser codespace'
 sudo sh -c 'sudo -u postgres createdb demo_development'
-rails db:migrate
