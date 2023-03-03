@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'audit', to: "petitions#audit"
+
   resources :users
   get 'profile', to: "users#show"
 

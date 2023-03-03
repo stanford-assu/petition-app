@@ -10,6 +10,8 @@
         <th>Sponsor</th>
         <th>Title</th>
         <th>Signees</th>
+        <th>Created</th>
+        <th>Edited</th>
         <th colspan="4"></th>
       </tr>
     </thead>
@@ -22,6 +24,8 @@
           <td><%= petition.user.id %></td>
           <td><%= petition.title %></td>
           <td><%= petition.signees.length %></td>
+          <td><%= l petition.created_at.in_time_zone("America/Los_Angeles"), format: :long %></td>
+          <td><%= l petition.updated_at.in_time_zone("America/Los_Angeles"), format: :long %></td>
           <td><%= link_to 'Show', petition %></td>
           <td><%= link_to 'Public View', "/"+petition.slug %></td>
           <td><%= link_to 'Edit', edit_petition_path(petition) %></td>

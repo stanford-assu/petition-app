@@ -87,6 +87,12 @@ class PetitionsController < ApplicationController
     end
   end
 
+  # GET /audit or /audit.json
+  def audit
+    @petitions = Petition.all
+    render formats: :json
+  end
+
   private
 
     # If more than 10 signees, don't let the use edit
