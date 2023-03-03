@@ -2,11 +2,15 @@ class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
   before_action :authenticate_user!, only: :logged_in
   skip_before_action :verify_authenticity_token, only: :saml_callback
+  before_action :require_admin, only: :admin
   
   SAML_EPPN = "urn:oid:1.3.6.1.4.1.5923.1.1.1.6"
   SAML_NAME = "urn:oid:2.16.840.1.113730.3.1.241"
 
   def index
+  end
+
+  def admin
   end
 
   def saml_login

@@ -18,7 +18,9 @@ This should allow production SAML to work with in the development environment.
 - under the "Ports" tab, open the port 3001 link
 
 ### ToDo List (Feb 2023):
-- Button to export data into a report
+- Button to export data into a report ✅
+- Add created/edited timestamps for petitions ✅
+- Update for 2023 General Election ✅
 - Workflow to import data from IRDS from web (or from IRDS directly?)
 - Admin panel to enable/disable election-related petition signing
 - Move more validation into Models

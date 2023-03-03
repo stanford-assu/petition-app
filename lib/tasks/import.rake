@@ -8,8 +8,15 @@ namespace :import do
     task :enrollment_data, [:file] => [:environment] do |t, args|
 
         # - Clear all affiliations
-        # TODO
+        print("Clearing all saved affiliations")
+        User.find_each do |user|
+            user.member_type = :neither
+            user.ug_year = nil
+            user.coterm = false
+            user.save!
+        end
 
+        print("Importing new data from CSV")
         i = 0
         CSV.foreach(args[:file], :headers => true) do |row|
             i += 1
