@@ -1,0 +1,13 @@
+<b> Be Careful!</b>  <br>
+This for will do a few things: <br>
+- Parse the uploaded Enrollment CSV Data <br>
+- Provide a summary and ask for confirmation <br>
+- Delete all current user affiliations (enrollment group, class year, and program) <br>
+- Update all user records with the imported data <br>
+- Validate all existing petition signatures <br>
+<br>
+
+<%= form_with url: import_review_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag( "Import" ) %>
+<% end %>

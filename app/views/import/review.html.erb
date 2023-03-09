@@ -1,0 +1,23 @@
+<h2>File has been uploaded. Please Check it over:</h2>
+
+<table>
+    <thead>
+      <tr>
+        <th>EPPN</th>
+        <th>Enrollment Group</th>
+        <th>Co-Term</th>
+        <th>UG Year</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @new_user_data.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.member_type %></td>
+          <td><%= user.coterm %></td>
+          <td><%= user.ug_year %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

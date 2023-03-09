@@ -20,6 +20,12 @@ Rails.application.routes.draw do
 
   root to: "application#index"
   get 'admin', to: "application#admin"
+
+  get 'import', to: "import#index"
+  namespace :import do
+    post 'review', to: "review"
+  end
+
   get 'logged_in', to: "application#logged_in"
   post 'saml_login', to: "application#saml_login"
   post 'saml_callback', to: "application#saml_callback"
