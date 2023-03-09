@@ -102,6 +102,8 @@ namespace :import do
             print("Imported " + i.to_s + " user records!\r")
             user.save!
         end
+        
+        print("Imported " + i.to_s + " user records!")
 
         # - Clear all invalid signatures
         # TODO
