@@ -7,16 +7,21 @@ namespace :import do
     desc "Import Enrollment Data From CSV"
     task :enrollment_data, [:file] => [:environment] do |t, args|
 
+        print("Importing from: " + args[:file])
+
         # - Clear all affiliations
-        print("Clearing all saved affiliations")
+        print("Clearing all saved affiliations\n")
+        i = 0
         User.find_each do |user|
+            i += 1
             user.member_type = :neither
             user.ug_year = nil
             user.coterm = false
+            print("Cleared " + i.to_s + " user records!\r")
             user.save!
         end
 
-        print("Importing new data from CSV")
+        print("Importing new data from CSV\n")
         i = 0
         CSV.foreach(args[:file], :headers => true) do |row|
             i += 1
@@ -29,7 +34,7 @@ namespace :import do
             coterm_GR = (row["Coterm GR Group Ind"] == "Y")
             fail "Invalid Coterm Status" if coterm_UG && coterm_GR
 
-            coterm = coterm_UG || coterm_GR
+            coterm = coterm_UG || coterm_GRx
 
             careers = [ row["Career 1"], row["Career 2"], row["Career 3"]].compact
 
