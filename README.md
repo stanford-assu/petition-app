@@ -17,6 +17,14 @@ This should allow production SAML to work with in the development environment.
 - run `rails server` to start the server
 - under the "Ports" tab, open the port 3001 link
 
+### Hints
+Find a deleted record using paper_trail:
+```
+PaperTrail::Version.where_object(slug: 'deadbeef')
+record = PaperTrail::Version.where_object(slug: 'deadbeef').reify
+record.save!
+```
+
 ### ToDo List (Feb 2023):
 - Button to export data into a report ✅
 - Add created/edited timestamps for petitions ✅

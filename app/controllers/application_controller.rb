@@ -10,9 +10,6 @@ class ApplicationController < ActionController::Base
   def index
   end
 
-  def admin
-  end
-
   def saml_login
     saml_request = OneLogin::RubySaml::Authrequest.new
     redirect_to(saml_request.create(saml_settings, :RelayState => request.referrer))

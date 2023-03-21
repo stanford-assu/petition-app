@@ -7,6 +7,7 @@ class ImportController < ApplicationController
     end
   
     def review
+        # I give up
     #   @new_user_data = parse_data
       render :review, status: 422
     end

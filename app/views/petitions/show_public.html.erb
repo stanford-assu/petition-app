@@ -39,7 +39,9 @@
   <% end %>
 
   <div class="signature-list">
-    <strong> <%= @petition.signees.length %> Signees: </strong>
+    <strong> <%= @petition.signees.length %> Signees
+    (<%= @petition.signees.where(member_type: :undergrad).length %> Undergrad, 
+    <%= @petition.signees.where(member_type: :grad).length %> Grad): </strong>
     <% @petition.signees.each do |signee| %>
       <div class="signature">
         <%= signee.id %> (<%= signee.name %>)
