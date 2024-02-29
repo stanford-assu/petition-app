@@ -7,7 +7,7 @@ namespace :import do
     desc "Import Enrollment Data From CSV"
     task :enrollment_data, [:file] => [:environment] do |t, args|
 
-        print("Importing from: " + args[:file])
+        print("Importing from: " + args[:file] + "\n")
 
         # - Clear all affiliations
         print("Clearing all saved affiliations\n")

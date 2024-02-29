@@ -7,9 +7,14 @@ class ImportController < ApplicationController
     end
   
     def review
-        # I give up
-    #   @new_user_data = parse_data
-      render :review, status: 422
+        uploaded_io = params[:csv_file]
+        @upload_name = Rails.root.join('storage', uploaded_io.original_filename)
+        File.open(@upload_name, 'wb') do |file|
+            file.write(uploaded_io.read)
+        end
+
+        @new_user_data = [] # I give up
+        render :review, status: 422
     end
 
 private
