@@ -1,23 +1,47 @@
-<h2>File has been uploaded to <%= @upload_name %>. Please Check it over:</h2>
+<h2>File has been uploaded. Please Check it over:</h2>
+<h3>Uploaded to: <%= @upload_name %></h3>
+<h3>
 
-<table>
-    <thead>
-      <tr>
-        <th>EPPN</th>
-        <th>Enrollment Group</th>
-        <th>Co-Term</th>
-        <th>UG Year</th>
-      </tr>
-    </thead>
+<div style="height:200px; overflow:hidden; overflow-y:scroll; margin:10px">
+  <% @warnings.each do |msg| %>
+    <%= msg %><br>
+  <% end %>
+</div>
 
-    <tbody>
-      <% @new_user_data.each do |user| %>
+Parsed <%= @new_user_data.length %> lines of enrollment data:
+<div style="height:200px; overflow:hidden; overflow-y:scroll; margin:10px">
+  <table>
+      <thead>
         <tr>
-          <td><%= user.id %></td>
-          <td><%= user.member_type %></td>
-          <td><%= user.coterm %></td>
-          <td><%= user.ug_year %></td>
+          <th>EPPN</th>
+          <th>Enrollment Group</th>
+          <th>Co-Term</th>
+          <th>UG Year</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% @new_user_data.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.member_type %></td>
+            <td><%= user.coterm %></td>
+            <td><%= user.ug_year %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+
+<div>
+<b> Be Careful!</b>  <br>
+Hitting submit will: <br>
+- Delete all current user affiliations (enrollment group, class year, and program) <br>
+- Update all user records with the imported data <br>
+- Validate all existing petition signatures <br>
+<br>
+Applying the full data may take several minutes, please be patient! You'll get a message when sucessfull.<br>
+<%= form_with url: import_apply_path do %>
+  <%= submit_tag( "Apply This Data" ) %>
+<% end %>
+</div>

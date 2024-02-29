@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'import', to: "import#index"
   namespace :import do
     post 'review', to: "review"
+    post 'apply', to: "apply"
   end
 
   get 'logged_in', to: "application#logged_in"
