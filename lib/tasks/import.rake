@@ -34,7 +34,7 @@ namespace :import do
             coterm_GR = (row["Coterm GR Group Ind"] == "Y")
             fail "Invalid Coterm Status" if coterm_UG && coterm_GR
 
-            coterm = coterm_UG || coterm_GRx
+            coterm = coterm_UG || coterm_GR
 
             careers = [ row["Career 1"], row["Career 2"], row["Career 3"]].compact
 
