@@ -45,9 +45,6 @@ class PetitionsController < ApplicationController
   # GET /petitions/new
   def new
     @petition = Petition.new
-    respond_to do |format|
-      format.html { redirect_to petitions_url, notice: "Petition creation is disabled at this time." }
-    end
   end
 
   # GET /petitions/1/edit
@@ -57,15 +54,20 @@ class PetitionsController < ApplicationController
   # POST /petitions or /petitions.json
   def create
     @petition = current_user.petitions.new(petition_params)
-    respond_to do |format|
-      # if @petition.save
-      #   format.html { redirect_to @petition, notice: "Petition was successfully created." }
-      #   format.json { render :show, status: :created, location: @petition }
-      # else
-      #   format.html { render :new, status: :unprocessable_entity }
-      #   format.json { render json: @petition.errors, status: :unprocessable_entity }
-      # end
-      format.html { redirect_to petitions_url, notice: "Petition creation is disabled at this time." }
+    if @petition.petition?
+      respond_to do |format|
+        if @petition.save
+          format.html { redirect_to @petition, notice: "Petition was successfully created." }
+          format.json { render :show, status: :created, location: @petition }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @petition.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to petitions_url, notice: "Petition creation is disabled at this time." }
+      end
     end
   end
 
