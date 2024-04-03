@@ -7,6 +7,13 @@ Coming Soon! <br>
 <h2>Admin Settings</h2>
 
 <div>
+<h3>
+Petition Signature Deadline: <%= @admin.closing_time.in_time_zone("America/Los_Angeles").to_fs(:db_with_tz) %>
+</h3>
+</div>
+<br>
+
+<div>
   <table>
 
     <tr>

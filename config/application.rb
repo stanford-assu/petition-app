@@ -10,6 +10,8 @@ module PetitionApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.time_zone = 'America/Los_Angeles'
+    Time::DATE_FORMATS[:db_with_tz] = "%Y-%m-%d %H:%M:%S %Z"
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -4,6 +4,7 @@ class PetitionsController < ApplicationController
   before_action :check_editable, only: %i[ edit update ]
   before_action :require_user, :except => [ :by_slug, :leaderboard ]
   before_action :check_petition_access, only: [ :show, :edit, :update, :destroy ]
+  before_action :signing_allowed, only: %i[ sign unsign ]
 
   # GET /petitions or /petitions.json
   def index
@@ -27,7 +28,6 @@ class PetitionsController < ApplicationController
   end
 
   def sign
-  #### Uncomment to allow signing!
    @petition.signees << current_user
    render "show_public"
   rescue
@@ -35,7 +35,6 @@ class PetitionsController < ApplicationController
   end
 
   def unsign
-  #### Uncomment to allow signing!
    @petition.signees.delete(current_user)
    render "show_public"
   rescue
@@ -54,7 +53,7 @@ class PetitionsController < ApplicationController
   # POST /petitions or /petitions.json
   def create
     @petition = current_user.petitions.new(petition_params)
-    if @petition.petition?
+    if true#@petition.petition?
       respond_to do |format|
         if @petition.save
           format.html { redirect_to @petition, notice: "Petition was successfully created." }
@@ -124,6 +123,15 @@ class PetitionsController < ApplicationController
       new_params[:slug].gsub!(/[^0-9a-z\-_]/i, '') #Trim special chars from slug
       new_params[:slug].downcase!
       new_params
+    end
+
+    def signing_allowed
+      if Time.now > Admin.instance.closing_time
+        # redirect_to action: 'by_slug', flash: {notice: "Successfully checked in"}
+        flash[:notice] = 'The Deadline to Sign Petitions has Passed!'
+        # #redirect_to action: 'by_slug'
+        render "show_public"
+      end
     end
 
     def check_petition_access
