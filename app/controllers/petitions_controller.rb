@@ -28,17 +28,17 @@ class PetitionsController < ApplicationController
 
   def sign
   #### Uncomment to allow signing!
-  #  @petition.signees << current_user
-  #  render "show_public"
-  # rescue
+   @petition.signees << current_user
+   render "show_public"
+  rescue
     render "show_public"
   end
 
   def unsign
   #### Uncomment to allow signing!
-  #  #@petition.signees.delete(current_user)
-  #  render "show_public"
-  # rescue
+   @petition.signees.delete(current_user)
+   render "show_public"
+  rescue
     render "show_public"
   end
 
@@ -54,7 +54,7 @@ class PetitionsController < ApplicationController
   # POST /petitions or /petitions.json
   def create
     @petition = current_user.petitions.new(petition_params)
-    if @petition.petition?
+    #if @petition.petition?
       respond_to do |format|
         if @petition.save
           format.html { redirect_to @petition, notice: "Petition was successfully created." }
@@ -64,11 +64,11 @@ class PetitionsController < ApplicationController
           format.json { render json: @petition.errors, status: :unprocessable_entity }
         end
       end
-    else
-      respond_to do |format|
-        format.html { redirect_to petitions_url, notice: "Petition creation is disabled at this time." }
-      end
-    end
+    #else
+    #  respond_to do |format|
+    #    format.html { redirect_to petitions_url, notice: "Petition creation is disabled at this time." }
+    #  end
+    #end
   end
 
   # PATCH/PUT /petitions/1 or /petitions/1.json
