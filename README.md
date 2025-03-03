@@ -33,4 +33,12 @@ record.save!
 - Admin panel to enable/disable election-related petition signing
 - Move more validation into Models
 
+## ToDo List (Feb 2024):
+- lowercase CSV when importing
+- fix web import tool (currently times out in prod)
+- Allow admins to edit homepage text
+
+## Status of Import Tool
+Currently, you need to use `/import` to upload the CSV file into the prod dyno, and then you can use `heroku exec` to process the data into the database. See the RUNBOOK for more details. Ideally, one day, this process could be completed from the web interface alone.
+
 Copyright assigned to the Associated Students of Stanford University, licensed publicly under the GPLv2.
