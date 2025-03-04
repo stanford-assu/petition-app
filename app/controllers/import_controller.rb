@@ -36,17 +36,9 @@ class ImportController < ApplicationController
     def apply
         data_to_apply = @@user_data_persist
         if data_to_apply.length > 0
-            clear_old_user_data()
-            print("Applying: " + data_to_apply.length.to_s + "\n")
-            data_to_apply.each do |new_data|
-                user = User.create_or_find_by!(id: new_data.id)
-                user.member_type = new_data.member_type
-                user.ug_year = new_data.ug_year
-                user.coterm = new_data.coterm
-                user.save!
-            end
-            flash[:error] = "Successfully Imported " + data_to_apply.length.to_s + " Records!"
-            redirect_to action: 'index', controller: 'users'
+            ImportJob.perform_later data_to_apply
+            flash[:error] = "Started Job to import " + data_to_apply.length.to_s + " Records!"
+            redirect_to action: 'index', controller: 'import'
         else
             flash[:error] = "No Data to Apply!"
             redirect_to action: 'index', controller: 'import'
@@ -54,16 +46,6 @@ class ImportController < ApplicationController
     end
 
 private
-
-    def clear_old_user_data
-        print("Clearing all saved affiliations")
-        User.find_each do |user|
-            user.member_type = :neither
-            user.ug_year = nil
-            user.coterm = false
-            user.save!
-        end
-    end
 
     def parse_data
 
@@ -138,8 +120,8 @@ private
             when "UG Year"
                 user.ug_year = User.ug_years['na']
             else
-                fail "Invalid UG Year"
                 pp row
+                fail "Invalid UG Year"
             end
 
             

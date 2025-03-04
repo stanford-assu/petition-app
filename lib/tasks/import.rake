@@ -95,8 +95,8 @@ namespace :import do
             when "UG Year"
                 user.na!
             else
-                fail "Invalid UG Year"
                 pp row
+                fail "Invalid UG Year"
             end
 
             print("Imported " + i.to_s + " user records!\r")
