@@ -1,7 +1,7 @@
 class ImportJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
+  def perform(*data_to_apply)
     clear_old_user_data()
     print("Applying: " + data_to_apply.length.to_s + "\n")
     data_to_apply.each do |new_data|
@@ -11,6 +11,8 @@ class ImportJob < ApplicationJob
         user.coterm = new_data.coterm
         user.save!
     end
+
+    print("Finished Import Job!\n")
     
     # callback here
     # flash[:error] = "Successfully Imported " + data_to_apply.length.to_s + " Records!"

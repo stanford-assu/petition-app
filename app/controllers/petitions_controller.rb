@@ -101,7 +101,7 @@ class PetitionsController < ApplicationController
 
   private
 
-    # If more than 10 signees, don't let the use edit
+    # If more than 10 signees, don't let them use edit
     def check_editable
       if (@petition.signees.length > 10) && (!current_user.admin)
         flash[:notice] = 'Petitions with more than 10 signatures cannot be edited, please reach out to elections@assu.stanford.edu for help.'
