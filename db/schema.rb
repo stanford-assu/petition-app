@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_02_051455) do
-
+ActiveRecord::Schema[7.0].define(version: 2026_02_21_063627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,8 +19,8 @@ ActiveRecord::Schema.define(version: 2022_04_02_051455) do
     t.text "body"
     t.string "record_type", null: false
     t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
@@ -53,13 +52,21 @@ ActiveRecord::Schema.define(version: 2022_04_02_051455) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "app_settings", force: :cascade do |t|
+    t.integer "singleton_guard"
+    t.boolean "signatures_enabled", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["singleton_guard"], name: "index_app_settings_on_singleton_guard", unique: true
+  end
+
   create_table "petitions", force: :cascade do |t|
     t.string "slug", null: false
     t.string "title"
     t.text "content"
     t.string "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "topic"
     t.index ["slug"], name: "index_petitions_on_slug", unique: true
   end
@@ -77,8 +84,8 @@ ActiveRecord::Schema.define(version: 2022_04_02_051455) do
     t.integer "member_type"
     t.boolean "admin", default: false
     t.datetime "last_login"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "coterm", default: false
     t.integer "ug_year", default: 0
   end
@@ -89,7 +96,7 @@ ActiveRecord::Schema.define(version: 2022_04_02_051455) do
     t.string "event", null: false
     t.string "whodunnit"
     t.text "object"
-    t.datetime "created_at", precision: 6
+    t.datetime "created_at"
     t.text "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end

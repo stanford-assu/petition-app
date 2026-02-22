@@ -23,20 +23,21 @@ namespace :import do
 
         print("Importing new data from CSV\n")
         i = 0
-        CSV.foreach(args[:file], :headers => true) do |row|
+        converter = lambda { |header| header.downcase }
+        CSV.foreach(args[:file], :headers => true, header_converters: converter) do |row|
             i += 1
 
-            if (row["Email"].downcase != (row["SUNet ID"]+"@stanford.edu"))
-                warn("Email: " + row["Email"] + " does not match SUNetID: " + (row["SUNet ID"]+"@stanford.edu"))
+            if (row["email"].downcase != (row["sunet id"]+"@stanford.edu"))
+                warn("Email: " + row["email"] + " does not match SUNetID: " + (row["sunet id"]+"@stanford.edu"))
             end
 
-            coterm_UG = (row["Coterm UG Group Ind"] == "Y")
-            coterm_GR = (row["Coterm GR Group Ind"] == "Y")
+            coterm_UG = (row["coterm ug group ind"] == "Y")
+            coterm_GR = (row["coterm gr group ind"] == "Y")
             fail "Invalid Coterm Status" if coterm_UG && coterm_GR
 
             coterm = coterm_UG || coterm_GR
 
-            careers = [ row["Career 1"], row["Career 2"], row["Career 3"]].compact
+            careers = [ row["career 1"], row["career 2"], row["career 3"]].compact
 
             gr_career = (careers.include? "Medicine") \
                         || (careers.include? "Graduate School of Business") \
@@ -46,11 +47,11 @@ namespace :import do
             ug_career = (careers.include? "Undergraduate")
 
             if !coterm && ug_career && gr_career
-                warn(row["SUNet ID"] + " has UG and GR careers, but is not a Co-Term!")
+                warn(row["sunet id"] + " has UG and GR careers, but is not a Co-Term!")
             end
 
             if coterm && ug_career && !gr_career
-                warn(row["SUNet ID"] + " has only UG career, but is a Co-Term!")
+                warn(row["sunet id"] + " has only UG career, but is a Co-Term!")
             end
 
             # if coterm && !ug_career && gr_career
@@ -59,10 +60,10 @@ namespace :import do
             # end
 
             if !ug_career && !gr_career
-                warn(row["SUNet ID"] + " has no career!")
+                warn(row["sunet id"] + " has no career!")
             end
 
-            user = User.create_or_find_by!(id: row["SUNet ID"])
+            user = User.create_or_find_by!(id: row["sunet id"])
 
             user.coterm = coterm
 
@@ -79,7 +80,7 @@ namespace :import do
                 fail "Affiliation is not consistent!"
             end
 
-            case row["Ug Social Class Long Desc"]
+            case row["ug social class long desc"]
             when "-"
                 user.na!
             when "UG Year 1"

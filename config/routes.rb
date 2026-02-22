@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   root to: "application#index"
   get 'admin', to: "admin#index"
+  patch 'admin', to: "admin#update"
 
   get 'import', to: "import#index"
   namespace :import do
